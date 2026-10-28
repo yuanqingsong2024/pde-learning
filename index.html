@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>PDE 学习站 | Prompt-Driven Engineering</title>
+<style>
+body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.7;color:#222}
+h1{font-size:28px} h2{margin-top:36px;border-bottom:1px solid #ddd;padding-bottom:6px}
+.card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0}
+textarea{width:100%;min-height:140px;padding:10px;font-size:14px}
+button{padding:8px 16px;border-radius:8px;border:1px solid #222;background:#222;color:#fff;cursor:pointer}
+label{display:block;margin:8px 0}
+small{color:#666}
+</style>
+</head>
+<body>
+<h1>PDE 学习站</h1>
+<p><strong>Prompt-Driven Engineering：把 Prompt 当软件构件来做，而不是当聊天咒语来写。</strong></p>
+<p>核心目标：每个 Prompt（或一组 Prompt）都要结构清楚、行为稳定、能测、能改、能复用。</p>
+
+<h2>和相邻概念的分工</h2>
+<ul>
+<li><strong>Prompt Engineering</strong>：这一次怎么写才答得好</li>
+<li><strong>PDD</strong>：开发循环快不快（意图 → 生成 → 评估 → 迭代）</li>
+<li><strong>PDE</strong>：这个 Prompt 本身质量够不够</li>
+<li><strong>POG</strong>：全公司怎么管、复用、审计这些资产</li>
+</ul>
+
+<h2>学习路线</h2>
+<ol>
+<li>概念：Prompt 的生命周期——像代码一样版本、评审、测试、发布</li>
+<li>结构模板：角色 / 目标 / 上下文 / 约束 / 输入输出 Schema / 示例 / 失败处理</li>
+<li>质量清单：见下方自评</li>
+<li>评估：测试用例集、黄金答案、评分标准、回归测试</li>
+<li>PDD 迭代：意图 → 生成 → 评估 → 迭代，记录每次改动的原因和效果</li>
+<li>POG 治理：目录命名、版本管理、复用、审计、权限和变更记录</li>
+</ol>
+
+<h2>PDE 质量清单自评</h2>
+<div class="card">
+<label><input type="checkbox" class="q"> 结构清楚：角色、目标、约束、输入输出都写明了</label>
+<label><input type="checkbox" class="q"> 行为稳定：同一输入多次跑，结果格式和口径基本一致</label>
+<label><input type="checkbox" class="q"> 能测：有 5 条以上测试用例和评分标准</label>
+<label><input type="checkbox" class="q"> 能改：改动点集中，改一处不破坏其他用例</label>
+<label><input type="checkbox" class="q"> 能复用：命名、版本、适用场景和禁忌都写清楚了</label>
+<p><button onclick="score()">算一下得分</button> <span id="result"></span></p>
+</div>
+
+<h2>PDD 实验场</h2>
+<div class="card">
+<p>先写下你的 Prompt 意图，再贴一个结构化版本，对照上面的清单自评一轮。这一步不调用任何模型，重点是把“构件”本身写清楚。</p>
+<label>意图（一句话）<br><input id="intent" style="width:100%;padding:8px" placeholder="例如：帮我评审这段 Java 代码的安全性和可读性"></label>
+<label style="margin-top:12px">结构化 Prompt 草稿<br><textarea id="draft" placeholder="角色：……&#10;目标：……&#10;输入：……&#10;输出 Schema：……&#10;约束：……&#10;失败时：……"></textarea></label>
+<p><small>下一步建议：把这份草稿存到 prompts/，再到 eval/ 给它配测试用例。</small></p>
+</div>
+
+<h2>下一步</h2>
+<ul>
+<li>看 <code>prompts/code-review.md</code>：一个现成的 Prompt 构件范例</li>
+<li>看 <code>eval/code-review-cases.md</code>：它的测试用例和评分标准</li>
+<li>看 <code>docs/pog-governance.md</code>：团队怎么管这些资产</li>
+</ul>
+<script>
+function score(){
+  const checked=document.querySelectorAll('.q:checked').length;
+  document.getElementById('result').textContent = '得分：' + checked + ' / 5，' + (checked===5 ? '可以入库了。' : checked>=3 ? '基本可用，先补齐缺的项再入库。' : '先别入库，把缺的项补齐。');
+}
+</script>
+</body>
+</html>
