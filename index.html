@@ -3,42 +3,147 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>PDE 学习站 | Prompt-Driven Engineering</title>
+<title>PDE 学习站 | 从全栈开发到 PDE 解决方案工程师</title>
 <style>
-body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:860px;margin:0 auto;padding:24px;line-height:1.7;color:#222}
-h1{font-size:28px} h2{margin-top:36px;border-bottom:1px solid #ddd;padding-bottom:6px}
+body{font-family:system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;max-width:920px;margin:0 auto;padding:24px;line-height:1.75;color:#222}
+nav{position:sticky;top:0;background:#fff;padding:10px 0;border-bottom:1px solid #ddd;overflow-x:auto;white-space:nowrap}
+nav a{margin-right:14px;color:#2456a6;text-decoration:none}
+h1{font-size:30px} h2{margin-top:40px;border-bottom:1px solid #ddd;padding-bottom:6px}
+h3{margin-top:24px}
 .card{border:1px solid #ddd;border-radius:12px;padding:16px;margin:12px 0}
-textarea{width:100%;min-height:140px;padding:10px;font-size:14px}
+.warn{background:#fff7e6;border-color:#f0c36d}
+textarea{width:100%;min-height:150px;padding:10px;font-size:14px;box-sizing:border-box}
+input[type=text]{width:100%;padding:8px;box-sizing:border-box}
 button{padding:8px 16px;border-radius:8px;border:1px solid #222;background:#222;color:#fff;cursor:pointer}
 label{display:block;margin:8px 0}
-small{color:#666}
+small,.muted{color:#666}
+code{background:#f2f2f2;padding:1px 5px;border-radius:4px}
+table{border-collapse:collapse;width:100%;margin:12px 0}
+th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top}
 </style>
 </head>
 <body>
-<h1>PDE 学习站</h1>
+<nav>
+<a href="#what">PDE 是什么</a><a href="#day">日常工作</a><a href="#roadmap">路线图</a><a href="#arch">架构与用例</a><a href="#resources">资源</a><a href="#portfolio">作品集</a><a href="#pitfalls">反模式</a><a href="#lab">实验场</a><a href="#sources">来源</a>
+</nav>
+
+<h1>PDE 学习站：从全栈开发到 PDE 解决方案工程师</h1>
 <p><strong>Prompt-Driven Engineering：把 Prompt 当软件构件来做，而不是当聊天咒语来写。</strong></p>
-<p>核心目标：每个 Prompt（或一组 Prompt）都要结构清楚、行为稳定、能测、能改、能复用。</p>
+<p>核心目标：每个 Prompt（或一组 Prompt）都要<strong>结构清楚、行为稳定、能测、能改、能复用</strong>。解决方案工程师交付的不是一段文本，而是一个可回归测试、可回滚、可审计、可算成本的系统。</p>
+<p class="muted">面向读者：Java、Web、小程序背景的全栈开发工程师 / 开发负责人，目标是 PDE 解决方案工程师。本站内容整合自 2026-10-28 的调研报告，关键来源见文末；PDE 不是偏微分方程。</p>
 
-<h2>和相邻概念的分工</h2>
-<ul>
-<li><strong>Prompt Engineering</strong>：这一次怎么写才答得好</li>
-<li><strong>PDD</strong>：开发循环快不快（意图 → 生成 → 评估 → 迭代）</li>
-<li><strong>PDE</strong>：这个 Prompt 本身质量够不够</li>
-<li><strong>POG</strong>：全公司怎么管、复用、审计这些资产</li>
-</ul>
+<h2 id="what">PDE 是什么</h2>
+<div class="card warn"><strong>术语提醒：</strong>检索未发现 PDE / POG 的统一官方标准定义，本站按工作定义使用：PDE 是端到端的解决方案工程学科，POG 是其中负责治理的一层。对外沟通时先亮明定义，可优先使用 AI Solution Engineer、LLM Engineer、PromptOps / LLM Governance 等更通用的说法。</div>
+<table>
+<tr><th>概念</th><th>核心问题</th><th>典型产出</th></tr>
+<tr><td>Prompt Engineering</td><td>这一次怎么写才答得好</td><td>系统提示、Few-shot 示例、输出格式约定</td></tr>
+<tr><td>PDD（提示驱动开发）</td><td>开发循环快不快：意图 → 生成 → 评估 → 迭代</td><td>规约式提示 + 测试用例 + 迭代后的代码</td></tr>
+<tr><td>PDE（本文工作定义）</td><td>这个 Prompt 本身质量够不够，业务目标如何变成可靠系统</td><td>方案设计、提示资产、评测集、部署与治理全套</td></tr>
+<tr><td>POG / PromptOps</td><td>全公司怎么管、复用、审计这些资产</td><td>提示目录、版本与别名、审批流、审计日志</td></tr>
+<tr><td>上下文工程</td><td>模型每一步看到什么信息</td><td>检索策略、分块与排序、记忆分层、上下文预算</td></tr>
+</table>
+<p><strong>最优先的三件事：</strong>（1）做一个带结构化输出 + 黄金评测集的 RAG 问答；（2）做一个带工具调用 + 人工确认的审批型工作流；（3）把提示入库、版本化、接可观测，形成可展示的解决方案交付物，而不是一堆聊天截图。</p>
 
-<h2>学习路线</h2>
+<h2 id="day">解决方案工程师的一天</h2>
 <ol>
-<li>概念：Prompt 的生命周期——像代码一样版本、评审、测试、发布</li>
-<li>结构模板：角色 / 目标 / 上下文 / 约束 / 输入输出 Schema / 示例 / 失败处理</li>
-<li>质量清单：见下方自评</li>
-<li>评估：测试用例集、黄金答案、评分标准、回归测试</li>
-<li>PDD 迭代：意图 → 生成 → 评估 → 迭代，记录每次改动的原因和效果</li>
-<li>POG 治理：目录命名、版本管理、复用、审计、权限和变更记录</li>
+<li><strong>发现：</strong>区分能用规则/搜索解决还是必须用 LLM；定义成功指标、收集真实语料与合规边界。交付：用例画布、成功指标、风险与数据清单。</li>
+<li><strong>方案设计：</strong>画架构、选模型分层、定 Token / 延迟 / 成本预算。交付：架构图、选型表、预算。</li>
+<li><strong>提示架构：</strong>写系统提示、拆分路由/抽取/综合/评审提示、定 JSON Schema 与工具 Schema。交付：带版本的提示模板库。</li>
+<li><strong>评测：</strong>建黄金集、跑基线、做回归与失败分类。交付：评测报告、回归门禁。</li>
+<li><strong>部署：</strong>灰度与别名切换、降级策略、限流与成本熔断。交付：发布清单、回滚方案。</li>
+<li><strong>治理（POG）：</strong>PR 式评审、审批、审计、定期复审过期提示。交付：提示目录、变更日志、审计记录。</li>
+<li><strong>运营复盘：</strong>看成本、延迟、失败率与用户反馈，向业务方汇报质量-成本-延迟三维结果。</li>
 </ol>
+<p><strong>关键判断：</strong>先找最简单的解法，只有在需要时才增加复杂度。单次调用 + 检索能解决的不要上智能体；步骤固定用工作流；步骤不可预知才用智能体，并加步数上限与护栏。</p>
 
-<h2>PDE 质量清单自评</h2>
+<h2 id="roadmap">分阶段路线图（0–8 阶段）</h2>
+<p>建议节奏仅供参考：全职约 3–4 个月、业余约 6 个月走完 0–6 阶段并做出 2 个可展示项目；7–8 阶段在真实项目中持续打磨。每个阶段都有出关标准，做不到就不要急于进入下一阶段。</p>
 <div class="card">
+<label><input type="checkbox" class="stage"> <strong>阶段 0 · 心智模型（1 周）：</strong>Token、上下文窗口、幻觉本质、一次调用 vs 工作流 vs 智能体。出关：能向非技术同事讲清为什么不能直接把 LLM 当数据库用。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 1 · 基础提示设计（1–2 周）：</strong>角色分工、五段结构、分隔符、Few-shot 与 Chain-of-Thought 的适用边界。出关：同一提示连续跑 10 次，格式与关键字段稳定可度量。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 2 · 结构化输出与 Schema（1–2 周）：</strong>JSON Schema / 结构化输出、工具 Schema、服务端二次校验、校验失败重试与降级。出关：输出 100 次零解析失败，并能拦截“Schema 通过但业务值错误”。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 3 · RAG 与工具调用（2–3 周）：</strong>摄入、分块、混合检索、重排、带引用生成、权限过滤；工具职责单一、写操作人工确认。出关：能画出 RAG 全链路并指出每一环的失败模式。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 4 · 智能体工作流（2–3 周）：</strong>提示链、路由、并行、编排者-工人、评估者-优化者、智能体循环、停止条件与人机协作。出关：能为新需求写出工作流 vs 智能体决策记录。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 5 · 评测与测试（2–3 周，与 3–4 并行）：</strong>黄金集、三层评分（确定性检查、RAG 指标、LLM-as-Judge）、回归门禁、轨迹评测。出关：说“新提示是否更好”时用数字、阈值与样本量，而不是感觉。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 6 · 可观测与成本/延迟（1–2 周）：</strong>提示版本、Token、延迟分位、工具链、成本归属；路由、缓存、裁剪、熔断。出关：能回答每个功能每天花多少钱、慢在哪里、失败集中在哪三类。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 7 · 安全与合规（1–2 周）：</strong>OWASP LLM Top 10（2025，二次整理，上线前以官网最新版为准）、提示注入、最小权限、脱敏、红队测试。出关：能为上线方案写出威胁模型与控制清单。</label>
+<label><input type="checkbox" class="stage"> <strong>阶段 8 · 企业治理 POG（持续）：</strong>注册表、不可变版本 + 语义化版本 + 别名、生命周期、审批、审计、复用度量。出关：5 分钟内回答线上跑的是哪个提示版本、谁评审过、回滚要几步。</label>
+<p><button onclick="progress()">算一下进度</button> <span id="progress"></span></p>
+</div>
+<h3>全栈迁移地图</h3>
+<table>
+<tr><th>已有能力</th><th>在 PDE 中的对应能力</th></tr>
+<tr><td>Spring Boot 分层、REST 契约、DTO 校验</td><td>提示 Schema、工具 Schema、输出校验层（不要把校验交给模型）</td></tr>
+<tr><td>微服务、网关、限流、熔断</td><td>LLM 网关：路由、限流、成本熔断、降级、超时与重试</td></tr>
+<tr><td>权限 RBAC、审计日志</td><td>RAG 检索时权限过滤、提示版本审计、工具调用审计</td></tr>
+<tr><td>前端 SSE / 流式渲染、表单确认</td><td>流式回答渲染、写操作前人工确认 UI、引用来源展示</td></tr>
+<tr><td>小程序轻量前端</td><td>前端只做展示与确认，模型调用、密钥、提示模板一律放后端；不直连模型厂商 API</td></tr>
+<tr><td>单元 / 集成测试、CI</td><td>黄金集回归门禁、提示变更 CI、生产回放（线上失败转为新用例）</td></tr>
+</table>
+
+<h2 id="arch">通用参考架构与五个必会用例</h2>
+<p><code>用户（Web / 小程序 / 客服工作台）→ 鉴权 + 限流 → API 网关 / BFF（Java Spring Boot）→ 提示注册表 + 模型路由 + 成本熔断 → RAG 检索（权限过滤 → 混合检索 → 重排）+ 工具调用 → LLM 调用（结构化输出，超时 + 重试上限）→ 输出校验（Schema → 规则 → 安全 → 证据）→ 自动执行 / 人工确认 / 转人工 → 业务系统 + 审计日志 + 可观测</code></p>
+<p><strong>Java 落地要点（已核验文档）：</strong>Spring AI 提供跨厂商 Chat / Embedding API、结构化输出到 POJO、向量库、工具调用、可观测、RAG 与 MCP；LangChain4j 提供统一 LLM / 向量库 API、AiServices、Agent 与 RAG 工具箱。已在 Spring 生态优先 Spring AI；需要更丰富的 Agent 语义可看 LangChain4j，不要在同一个服务里混用两套提示与追踪体系。</p>
+<table>
+<tr><th>用例</th><th>模式</th><th>评测要点</th></tr>
+<tr><td>客服助手</td><td>路由 → RAG → 带引用草稿 → 人工确认；退款等高风险强制转人工</td><td>引用准确率、拒答与转人工恰当率、客服采纳率、注入测试</td></tr>
+<tr><td>代码评审 / 开发助手</td><td>并行评审（安全、性能、可读性、测试）→ 聚合去重 → 结构化评论，不自动合入</td><td>检出率、误报率、严重度准确率、行号有效率</td></tr>
+<tr><td>文档 / 知识问答</td><td>摄入 → 分块 → 混合检索 → 重排 → 带引用生成 → 证据校验</td><td>Faithfulness、答案相关性、上下文精度/召回、引用准确率、拒答恰当率</td></tr>
+<tr><td>数据分析与报告</td><td>查询计划 → 白名单 SQL 校验 → 只读执行 → 结构化报告；模型不直接写生产库</td><td>SQL 可执行率、结果正确率、口径错误率、数字与图表一致率</td></tr>
+<tr><td>工作流自动化</td><td>编排者-工人或固定工作流 + 状态机，断点续跑、幂等、失败转人工</td><td>工具选择与参数正确率、步数、循环检测、端到端成功率</td></tr>
+</table>
+<p><strong>选型速查：</strong>一次检索 + 一次生成能解决 → 单次调用 + RAG；步骤固定 → 固定工作流；步骤取决于输入 → 智能体（带上限与人工确认）；写操作、资金、合规承诺 → 工作流 + 人工确认。</p>
+
+<h2 id="resources">学习资源</h2>
+<h3>官方文档（优先读）</h3>
+<ul>
+<li><a href="https://www.anthropic.com/engineering/building-effective-agents">Anthropic《Building effective AI agents》</a>：工作流 vs 智能体、五种模式、工具设计（2026-10-28 直接读取核验）</li>
+<li><a href="https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview">Anthropic 提示工程概览</a>：提示结构、XML 标签、结构化输出</li>
+<li><a href="https://platform.openai.com/docs/guides/prompt-engineering">OpenAI 提示工程指南</a>：系统消息、Few-shot、函数调用、降幻觉</li>
+<li><a href="https://cdn.openai.com/business-guides-and-resources/a-practical-guide-to-building-agents.pdf">OpenAI《A Practical Guide to Building Agents》</a></li>
+<li><a href="https://docs.spring.io/spring-ai/reference/">Spring AI 参考文档</a>：结构化输出、向量库、工具调用、可观测、RAG（已核验）</li>
+<li><a href="https://docs.langchain4j.dev">LangChain4j 文档</a>：统一 API、AiServices、Agent、RAG（已核验）</li>
+</ul>
+<h3>课程与书籍</h3>
+<ul>
+<li>DeepLearning.AI 短课（来源明确标注免费，报名前以课程页为准）：《ChatGPT Prompt Engineering for Developers》《LangChain for LLM Application Development》《Building Systems with the ChatGPT API》《LangChain: Chat with Your Data》等，入口见来源清单。</li>
+<li>书籍（不写价格）：《AI Engineering》（Chip Huyen）、《Hands-On Large Language Models》《Prompt Engineering for LLMs》《Building Agentic AI Systems》《Designing Machine Learning Systems》。</li>
+<li>Java 转 AI 路线图：<a href="https://medium.com/@himanshu.wipro.svnit/from-java-developer-to-ai-engineer-a-complete-free-roadmap-2026-edition-440475e07c58">From Java Developer to AI Engineer</a>（来源明确标注免费资源）。</li>
+</ul>
+<h3>评测与可观测工具</h3>
+<ul>
+<li>评测：Ragas（RAG 专项）、DeepEval（Pytest 风格断言与 CI 门禁）、Promptfoo（YAML 测试集与红队）、Inspect AI。</li>
+<li>可观测：Langfuse（追踪、成本、提示版本、评测）、LangSmith（LangChain 生态）、Arize Phoenix（OpenTelemetry，Java 支持较好）、Opik。</li>
+<li>提示注册表与网关：MLflow Prompt Registry（Git 式版本 + 别名）、LiteLLM / Portkey 等网关（按产品授权为准）。</li>
+<li>编排与低代码：LangChain / LangGraph、LlamaIndex、Dify、Flowise、LangFlow（生产前需评估提示版本与可观测是否满足治理要求）。</li>
+</ul>
+<p class="muted">标注规则：免费仅在来源明确写明时标注；未明确的一律不推断价格，选型与报名前以官网当前页面为准。</p>
+
+<h2 id="portfolio">作品集：6 个项目</h2>
+<p>每个项目必备：README（业务问题、架构图、成功指标、成本/延迟数据）、<code>prompts/</code>（版本化模板 + 变更说明）、<code>schemas/</code>、<code>evals/</code>（黄金集 + Rubric + 回归报告）、脱敏追踪、可观测截图、<code>governance.md</code>（负责人、审批、回滚步骤）。没有数字的项目，在解决方案工程师面试中说服力会大打折扣。</p>
+<ol>
+<li><strong>企业文档问答（RAG，最优先）：</strong>Spring Boot + 向量库，100 篇文档，权限过滤，流式 Web 问答；50 条黄金集，含干扰、过期、无答案陷阱。</li>
+<li><strong>客服 Copilot：</strong>意图路由 → RAG → 草稿 → 人工确认，高风险强制转人工；按意图切片的采纳率与转人工恰当率。</li>
+<li><strong>代码评审助手：</strong>PR diff 分块 → 并行评审 → 聚合去重 → 结构化评论；不自动合入。</li>
+<li><strong>数据问答与报告生成：</strong>自然语言 → 查询计划 → 白名单 SQL 校验 → 只读执行 → 结构化报告；拒绝写语句测试。</li>
+<li><strong>审批型工作流智能体：</strong>分类 → 抽取 → 校验 → 审批确认 → 执行 → 审计，断点续跑与幂等；轨迹评测。</li>
+<li><strong>提示治理平台（POG 最小实现）：</strong>目录、版本与别名、PR 评审、审计日志、灰度与回滚演练；可复用前五个项目的提示。</li>
+</ol>
+<p><strong>面试 30 秒叙事：</strong>业务问题是什么 → 为什么选这个架构而不是更复杂的智能体 → 提示与 Schema 怎么设计 → 评测集、基线与改进数字是多少 → 上线后成本、延迟、失败率是多少 → 如果重做会改哪里。</p>
+
+<h2 id="pitfalls">反模式与自查</h2>
+<ul>
+<li>无评测就上线；提示写进业务代码字符串；原地修改生产提示；上下文无脑堆料。</li>
+<li>只在提示里要求 JSON，不用 Schema / 校验；Schema 通过就以为值正确；检索错了怪模型、模型错了换更大模型。</li>
+<li>过度依赖 LLM-as-Judge；给智能体过大权限、无停止条件；把用户输入、检索文档、工具返回都当作指令。</li>
+<li>系统提示、密钥、内部规则泄露到客户端 / 日志；无成本、延迟预算与熔断；先上智能体，再证明必要性。</li>
+<li>只测“好问题”，不测拒答、干扰、过期、无答案、越权、注入五类负例。</li>
+</ul>
+<p><strong>每两周自查：</strong>能不看资料画出 RAG + 工具 + 评测 + 治理架构图吗？每个项目都有黄金集、基线与回归报告吗？能说出单任务成本、P95 延迟、最常见的 3 类失败吗？提示都在注册表里有版本、负责人与回滚步骤吗？写过至少 20 条注入 / 越权 / 拒答负例并让它们进回归吗？</p>
+
+<h2 id="lab">PDE 质量清单与实验场</h2>
+<div class="card">
+<p><strong>五项质量自评：</strong></p>
 <label><input type="checkbox" class="q"> 结构清楚：角色、目标、约束、输入输出都写明了</label>
 <label><input type="checkbox" class="q"> 行为稳定：同一输入多次跑，结果格式和口径基本一致</label>
 <label><input type="checkbox" class="q"> 能测：有 5 条以上测试用例和评分标准</label>
@@ -46,25 +151,50 @@ small{color:#666}
 <label><input type="checkbox" class="q"> 能复用：命名、版本、适用场景和禁忌都写清楚了</label>
 <p><button onclick="score()">算一下得分</button> <span id="result"></span></p>
 </div>
-
-<h2>PDD 实验场</h2>
 <div class="card">
-<p>先写下你的 Prompt 意图，再贴一个结构化版本，对照上面的清单自评一轮。这一步不调用任何模型，重点是把“构件”本身写清楚。</p>
-<label>意图（一句话）<br><input id="intent" style="width:100%;padding:8px" placeholder="例如：帮我评审这段 Java 代码的安全性和可读性"></label>
-<label style="margin-top:12px">结构化 Prompt 草稿<br><textarea id="draft" placeholder="角色：……&#10;目标：……&#10;输入：……&#10;输出 Schema：……&#10;约束：……&#10;失败时：……"></textarea></label>
+<p>先写下意图，再贴一个结构化版本，检查七个部件是否齐全。这一步不调用任何模型，重点是把“构件”本身写清楚；本页的状态只在本次浏览内有效，不会保存。</p>
+<label>意图（一句话）<br><input type="text" id="intent" placeholder="例如：帮我评审这段 Java 代码的安全性和可读性"></label>
+<label style="margin-top:12px">结构化 Prompt 草稿<br><textarea id="draft" placeholder="角色：……&#10;目标：……&#10;上下文：……&#10;约束：……&#10;输入输出 Schema：……&#10;示例：……&#10;失败时：……"></textarea></label>
+<p><button onclick="checkParts()">检查七个部件是否齐全</button> <span id="parts"></span></p>
 <p><small>下一步建议：把这份草稿存到 prompts/，再到 eval/ 给它配测试用例。</small></p>
 </div>
 
-<h2>下一步</h2>
+<h2>仓库里的现成构件</h2>
 <ul>
-<li>看 <code>prompts/code-review.md</code>：一个现成的 Prompt 构件范例</li>
-<li>看 <code>eval/code-review-cases.md</code>：它的测试用例和评分标准</li>
-<li>看 <code>docs/pog-governance.md</code>：团队怎么管这些资产</li>
+<li><code>prompts/code-review.md</code>：代码评审 Prompt 构件范例</li>
+<li><code>prompts/requirements-breakdown.md</code>：需求拆解 Prompt 构件</li>
+<li><code>eval/code-review-cases.md</code>、<code>eval/requirements-breakdown-cases.md</code>：测试用例和评分标准</li>
+<li><code>docs/pdd-loop.md</code>、<code>docs/pog-governance.md</code>：PDD 循环与 POG 治理</li>
+<li><code>java/src/main/java/pde/PromptTemplate.java</code>：Prompt 模板渲染最小示例</li>
 </ul>
+
+<h2 id="sources">主要来源</h2>
+<ul>
+<li>Anthropic《Building effective AI agents》：<a href="https://www.anthropic.com/engineering/building-effective-agents">https://www.anthropic.com/engineering/building-effective-agents</a>（2026-10-28 直接读取核验）</li>
+<li>Spring AI 参考文档：<a href="https://docs.spring.io/spring-ai/reference/">https://docs.spring.io/spring-ai/reference/</a>（已核验）</li>
+<li>LangChain4j 文档：<a href="https://docs.langchain4j.dev">https://docs.langchain4j.dev</a>（已核验）</li>
+<li>OpenAI 提示工程指南：<a href="https://platform.openai.com/docs/guides/prompt-engineering">https://platform.openai.com/docs/guides/prompt-engineering</a></li>
+<li>PDD 宣言：<a href="https://dev.to/blame76/prompt-driven-development-pdda-manifesto-against-comfortable-guessing-4m4a">https://dev.to/blame76/prompt-driven-development-pdda-manifesto-against-comfortable-guessing-4m4a</a></li>
+<li>PromptOps 治理指南：<a href="https://www.promptopsguide.org/p/governance.html">https://www.promptopsguide.org/p/governance.html</a></li>
+<li>DeepLearning.AI 课程指南（来源整理）：<a href="https://careery.pro/blog/ai-careers/deeplearning-ai-courses-guide">https://careery.pro/blog/ai-careers/deeplearning-ai-courses-guide</a></li>
+<li>免费 AI 课程资源整理：<a href="https://mindwiredai.com/2026/03/30/free-ai-courses-resources-2026/">https://mindwiredai.com/2026/03/30/free-ai-courses-resources-2026/</a></li>
+</ul>
+<p class="muted">完整 49 条来源见调研报告；除标注“已核验”外，其余为检索摘要，未逐页全文核验，关键上线决策前请再打开原文确认。OWASP 引用为 2025 版二次整理，上线前以 OWASP 官方最新版为准；小程序平台具体 AI 接入细则未核验，落地前请核对目标平台最新规范。</p>
+
 <script>
 function score(){
-  const checked=document.querySelectorAll('.q:checked').length;
-  document.getElementById('result').textContent = '得分：' + checked + ' / 5，' + (checked===5 ? '可以入库了。' : checked>=3 ? '基本可用，先补齐缺的项再入库。' : '先别入库，把缺的项补齐。');
+  const n=document.querySelectorAll('.q:checked').length;
+  document.getElementById('result').textContent='得分：'+n+' / 5，'+(n===5?'可以入库了。':n>=3?'基本可用，先补齐缺的项再入库。':'先别入库，把缺的项补齐。');
+}
+function progress(){
+  const boxes=document.querySelectorAll('.stage'); let n=0; boxes.forEach(b=>{if(b.checked)n++});
+  document.getElementById('progress').textContent='已完成 '+n+' / '+boxes.length+' 个阶段。';
+}
+function checkParts(){
+  const t=document.getElementById('draft').value;
+  const parts=['角色','目标','上下文','约束','Schema','示例','失败'];
+  const missing=parts.filter(p=>!t.includes(p));
+  document.getElementById('parts').textContent = missing.length===0 ? '七个部件齐全。下一步：给它配测试用例并跑一次回归。' : '还缺：'+missing.join('、')+'。';
 }
 </script>
 </body>
