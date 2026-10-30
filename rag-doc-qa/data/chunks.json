@@ -1,0 +1,278 @@
+[
+  {
+    "id": "prompts/code-review.md#Prompt 构件：代码评审",
+    "source": "prompts/code-review.md",
+    "heading": "Prompt 构件：代码评审",
+    "text": "- 名称：`code-review`\n- 版本：`v0.1.0`\n- 适用场景：评审 Java / 后端代码的安全性、可读性、可维护性\n- 不适用场景：直接生成可上线代码、做最终安全审计（需人工复核）\n- 负责人：待填写\n- 变更记录：v0.1.0 初始版本"
+  },
+  {
+    "id": "prompts/code-review.md#结构模板",
+    "source": "prompts/code-review.md",
+    "heading": "结构模板",
+    "text": "```text\n角色：资深 Java 代码评审员，熟悉常见安全问题和工程规范。\n目标：对给定的代码做评审，输出可执行的改进清单，而不是泛泛的表扬。\n\n输入：\n- 代码（必填）\n- 语言与框架（必填，例如：Java 17 + Spring Boot）\n- 评审重点（可选，默认：安全、可读性、可维护性）\n\n输出 Schema（JSON）：\n{\n  \"summary\": \"一句话总体评价\",\n  \"issues\": [\n    {\"severity\": \"high|medium|low\", \"where\": \"文件/方法/行号\", \"problem\": \"\", \"suggestion\": \"\"}\n  ],\n  \"must_fix\": [\"必须改的项\"],\n  \"optional\": [\"建议改的项\"]\n}\n\n约束：\n- 只针对给定的代码发言，不编造不存在的代码\n- 每个问题都要给具体位置和可执行的改法\n- 不确定时写“不确定”，并说明需要补充什么信息\n\n失败时：\n- 如果代码不完整，先列出缺失部分，再评审已给部分\n```"
+  },
+  {
+    "id": "prompts/code-review.md#质量自评",
+    "source": "prompts/code-review.md",
+    "heading": "质量自评",
+    "text": "- [ ] 结构清楚\n- [ ] 行为稳定（同一代码多次跑，输出格式一致）\n- [ ] 能测（见 `eval/code-review-cases.md`）\n- [ ] 能改（改评分重点不破坏输出格式）\n- [ ] 能复用（命名、版本、适用/不适用场景已写清）"
+  },
+  {
+    "id": "prompts/requirements-breakdown.md#Prompt 构件：需求拆解",
+    "source": "prompts/requirements-breakdown.md",
+    "heading": "Prompt 构件：需求拆解",
+    "text": "- 名称：`requirements-breakdown`\n- 版本：`v0.1.0`\n- 适用场景：把一段业务需求拆成可开发、可验收的任务\n- 不适用场景：直接定最终排期、做合同级需求确认\n- 负责人：待填写\n- 变更记录：v0.1.0 初始版本"
+  },
+  {
+    "id": "prompts/requirements-breakdown.md#结构模板",
+    "source": "prompts/requirements-breakdown.md",
+    "heading": "结构模板",
+    "text": "```text\n角色：资深产品与研发拆解助手。\n目标：把需求拆成任务清单，每个任务都有验收标准和依赖。\n\n输入：\n- 需求描述（必填）\n- 约束（可选：工期、技术栈、已有系统）\n\n输出 Schema（JSON）：\n{\n  \"tasks\": [\n    {\"title\": \"\", \"acceptance\": \"\", \"depends_on\": [], \"estimate\": \"S|M|L\"}\n  ],\n  \"open_questions\": [\"需要和需求方确认的问题\"],\n  \"risks\": [\"\"]\n}\n\n约束：\n- 不编造需求里没有的功能\n- 每个任务的验收标准要可验证\n- 不确定的拆分放到 open_questions，不要硬猜\n\n失败时：\n- 如果需求描述含糊，先列出需要确认的问题，再按最合理的理解拆分，并标出哪些任务依赖这些确认\n- 如果需求包含冲突的约束，先指出冲突，再给出按优先级取舍的拆分，不默默选一边\n```"
+  },
+  {
+    "id": "prompts/requirements-breakdown.md#质量自评",
+    "source": "prompts/requirements-breakdown.md",
+    "heading": "质量自评",
+    "text": "- [ ] 结构清楚\n- [ ] 行为稳定（同一需求多次跑，输出格式一致）\n- [ ] 能测（见 `eval/requirements-breakdown-cases.md`）\n- [ ] 能改（改拆分粒度不破坏输出格式）\n- [ ] 能复用（命名、版本、适用/不适用场景已写清）"
+  },
+  {
+    "id": "docs/pdd-loop.md#PDD 循环：意图 → 生成 → 评估 → 迭代",
+    "source": "docs/pdd-loop.md",
+    "heading": "PDD 循环：意图 → 生成 → 评估 → 迭代",
+    "text": "PDD 回答的是“开发循环快不快”，PDE 回答的是“这个 Prompt 本身质量够不够”。\n两者配合：用 PDD 的循环速度，去打磨 PDE 的构件质量。"
+  },
+  {
+    "id": "docs/pdd-loop.md#一轮怎么做",
+    "source": "docs/pdd-loop.md",
+    "heading": "一轮怎么做",
+    "text": "1. **意图**：一句话写清这次要解决什么、给谁用、成功标准是什么。\n2. **生成**：按结构模板写一版 Prompt，跑 3–5 条代表性用例。\n3. **评估**：按 `eval/` 里的评分标准打分，记录失败模式（格式错、定位错、建议不可执行、编造信息）。\n4. **迭代**：一次只改一个变量（例如只改输出 Schema，或只改约束），再跑回归。\n5. **入库**：分数达标且回归通过后，按 POG 规范写版本和变更记录。"
+  },
+  {
+    "id": "docs/pdd-loop.md#迭代记录模板",
+    "source": "docs/pdd-loop.md",
+    "heading": "迭代记录模板",
+    "text": "- 日期：\n- Prompt 与版本：\n- 本轮只改了什么：\n- 为什么改：\n- 用例分数变化：\n- 下一轮要改什么："
+  },
+  {
+    "id": "docs/pog-governance.md#POG 治理：全公司怎么管、复用、审计这些资产",
+    "source": "docs/pog-governance.md",
+    "heading": "POG 治理：全公司怎么管、复用、审计这些资产",
+    "text": "POG 回答的是组织层面的问题：Prompt 不再是个人聊天记录，而是团队资产。"
+  },
+  {
+    "id": "docs/pog-governance.md#最小治理清单",
+    "source": "docs/pog-governance.md",
+    "heading": "最小治理清单",
+    "text": "- **目录**：`prompts/` 一个构件一个文件，命名用动词+对象，例如 `code-review`。\n- **版本**：语义化版本，改输出格式升大版本，改措辞升小版本。\n- **负责人**：每个构件写负责人和最后评审日期。\n- **复用**：写清适用场景、不适用场景、依赖的模型与工具。\n- **审计**：每次发布记录改了什么、评估分数、回归结果；高风险场景保留人工复核。\n- **权限**：涉及内部数据、密钥、客户信息的 Prompt，单独标注，不进公开案例库。"
+  },
+  {
+    "id": "docs/pog-governance.md#从个人到团队的演进",
+    "source": "docs/pog-governance.md",
+    "heading": "从个人到团队的演进",
+    "text": "1. 个人：一个 Prompt + 一套测试用例，能稳定复用。\n2. 小组：统一命名和版本，评审后入库，别人可以直接复用。\n3. 公司：目录 + 审计 + 权限，Prompt 资产和代码资产同等管理。"
+  },
+  {
+    "id": "eval/code-review-cases.md#评估：代码评审 Prompt 测试用例",
+    "source": "eval/code-review-cases.md",
+    "heading": "评估：代码评审 Prompt 测试用例",
+    "text": "评分标准：每个用例满分 5 分——格式正确 2 分、问题定位准确 2 分、建议可执行 1 分。\n回归要求：改 Prompt 后，全部用例重新跑一遍，分数下降的用例要记录原因。"
+  },
+  {
+    "id": "eval/code-review-cases.md#用例 1：SQL 拼接",
+    "source": "eval/code-review-cases.md",
+    "heading": "用例 1：SQL 拼接",
+    "text": "输入：一段用字符串拼接 SQL 的 Java 代码。\n期望：指出注入风险，severity 为 high，给出参数化查询的改法。"
+  },
+  {
+    "id": "eval/code-review-cases.md#用例 2：空指针与边界",
+    "source": "eval/code-review-cases.md",
+    "heading": "用例 2：空指针与边界",
+    "text": "输入：一段未判空、未处理边界的集合处理代码。\n期望：指出空指针和边界问题，给出具体位置和改法，不泛泛而谈。"
+  },
+  {
+    "id": "eval/code-review-cases.md#用例 3：格式回归",
+    "source": "eval/code-review-cases.md",
+    "heading": "用例 3：格式回归",
+    "text": "输入：任意一段正常代码。\n期望：输出严格符合 `prompts/code-review.md` 里的 JSON Schema，不多不少字段。"
+  },
+  {
+    "id": "eval/code-review-cases.md#用例 4：信息不足",
+    "source": "eval/code-review-cases.md",
+    "heading": "用例 4：信息不足",
+    "text": "输入：只有片段、缺上下文的代码。\n期望：先说明缺失信息，再评审已给部分，不编造缺失的代码。"
+  },
+  {
+    "id": "eval/code-review-cases.md#记录模板",
+    "source": "eval/code-review-cases.md",
+    "heading": "记录模板",
+    "text": "| 日期 | Prompt 版本 | 用例 | 得分 | 改动原因 | 是否回归通过 |\n| --- | --- | --- | --- | --- | --- |\n|  | v0.1.0 | 1 |  |  |  |"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#评估：需求拆解 Prompt 测试用例",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "评估：需求拆解 Prompt 测试用例",
+    "text": "评分标准：每个用例满分 5 分——格式正确 2 分、验收标准可验证 2 分、不编造且不确定项进 open_questions 1 分。\n回归要求：改 Prompt 后，全部用例重新跑一遍，分数下降的用例要记录原因。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#用例 1：常规功能",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "用例 1：常规功能",
+    "text": "输入：一段清晰的业务需求，例如“用户可用手机号登录，登录失败 5 次后锁定 30 分钟”。\n期望：拆成可开发任务，每个任务有可验证的验收标准和依赖关系，estimate 只用 S/M/L。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#用例 2：需求含糊",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "用例 2：需求含糊",
+    "text": "输入：只有一句话的模糊需求，例如“做一个好用的报表功能”。\n期望：先在 open_questions 里列出需要确认的问题，再给出带依赖标注的初步拆分，不硬猜功能细节。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#用例 3：约束冲突",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "用例 3：约束冲突",
+    "text": "输入：需求里同时要求“本周上线”和“覆盖全部历史数据迁移”。\n期望：指出两项约束的冲突，给出按优先级取舍的拆分，不默默放弃其中一项。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#用例 4：格式回归",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "用例 4：格式回归",
+    "text": "输入：任意一段正常需求。\n期望：输出严格符合 `prompts/requirements-breakdown.md` 里的 JSON Schema，不多不少字段。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#用例 5：不编造",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "用例 5：不编造",
+    "text": "输入：一段只提到查询功能的需求。\n期望：不凭空增加导出、审批、通知等需求里没有的功能；如有建议，放到 risks 或 open_questions，而不是混进任务清单。"
+  },
+  {
+    "id": "eval/requirements-breakdown-cases.md#记录模板",
+    "source": "eval/requirements-breakdown-cases.md",
+    "heading": "记录模板",
+    "text": "| 日期 | Prompt 版本 | 用例 | 得分 | 改动原因 | 是否回归通过 |\n| --- | --- | --- | --- | --- | --- |\n|  | v0.1.0 | 1 |  |  |  |"
+  },
+  {
+    "id": "README.md#PDE 学习站：从全栈开发到 PDE 解决方案工程师",
+    "source": "README.md",
+    "heading": "PDE 学习站：从全栈开发到 PDE 解决方案工程师",
+    "text": "> PDE（Prompt-Driven Engineering）是把 Prompt 当软件构件来做，而不是当聊天咒语来写。\n>\n> 核心目标：每个 Prompt（或一组 Prompt）都要**结构清楚、行为稳定、能测、能改、能复用**。\n>\n> 术语提醒：检索未发现 PDE / POG 的统一官方标准定义，本站按工作定义使用；对外沟通时先亮明定义。\n\n**在线访问：** https://yuanqingsong2024.github.io/pde-learning/ （GitHub Pages，分支 main，根目录）\n\n本仓库面向 Java / Web / 小程序背景的全栈开发工程师，目标是 PDE 解决方案工程师：为企业设计、交付并治理提示驱动的 AI 解决方案。"
+  },
+  {
+    "id": "README.md#和相邻概念的分工",
+    "source": "README.md",
+    "heading": "和相邻概念的分工",
+    "text": "- **Prompt Engineering**：这一次怎么写才答得好\n- **PDD**：开发循环快不快（意图 → 生成 → 评估 → 迭代）\n- **PDE**：这个 Prompt 本身质量够不够，业务目标如何变成可靠系统\n- **POG**：全公司怎么管、复用、审计这些资产"
+  },
+  {
+    "id": "README.md#小站内容（index.html）",
+    "source": "README.md",
+    "heading": "小站内容（index.html）",
+    "text": "1. PDE 定义、术语提醒与概念对比\n2. 解决方案工程师七阶段日常工作链\n3. 0–8 阶段学习路线图，每阶段有出关标准，外加全栈迁移地图\n4. 通用参考架构与五个必会用例：客服、代码评审、文档问答、数据分析、工作流自动化\n5. 学习资源：官方文档、课程、书籍、评测与可观测工具\n6. 作品集：6 个项目，每个含范围、提示资产、评测标准、交付物\n7. 反模式、面试高频题与每两周自查清单\n8. 实验场：五项质量自评、七部件检查（仅本次浏览内状态，不保存）"
+  },
+  {
+    "id": "README.md#目录结构",
+    "source": "README.md",
+    "heading": "目录结构",
+    "text": "```text\nindex.html              完整学习网站首页（GitHub Pages 入口）\nprompts/\n  code-review.md        代码评审 Prompt 构件（带版本、输入输出 Schema、测试要点）\n  requirements-breakdown.md  需求拆解 Prompt 构件\neval/\n  code-review-cases.md  代码评审的测试用例与评分标准\n  requirements-breakdown-cases.md  需求拆解的测试用例与评分标准\ndocs/\n  pdd-loop.md           PDD 循环：意图 → 生成 → 评估 → 迭代\n  pog-governance.md     POG 治理：目录、版本、复用、审计\njava/\n  src/main/java/pde/PromptTemplate.java  最小 Prompt 模板渲染示例（Java）\n```"
+  },
+  {
+    "id": "README.md#学习路线（建议）",
+    "source": "README.md",
+    "heading": "学习路线（建议）",
+    "text": "- 全职约 3–4 个月、业余约 6 个月走完 0–6 阶段并做出 2 个可展示项目；7–8 阶段在真实项目中持续打磨。\n- 最优先的三件事：带结构化输出 + 黄金评测集的 RAG 问答；带工具调用 + 人工确认的审批型工作流；提示入库、版本化并接可观测。"
+  },
+  {
+    "id": "README.md#待办",
+    "source": "README.md",
+    "heading": "待办",
+    "text": "- [ ] 把第一个真实业务 Prompt 按模板入库\n- [ ] 给它配测试用例并跑通一次评估\n- [ ] 在团队内评审一次，确定命名与版本规范\n- [ ] 按作品集计划完成 P1 企业文档问答（RAG）"
+  },
+  {
+    "id": "README.md#来源与核验说明",
+    "source": "README.md",
+    "heading": "来源与核验说明",
+    "text": "除标注“已核验”（Anthropic 智能体指南、Spring AI、LangChain4j，2026-10-28 直接读取）外，其余资源为检索摘要，未逐页全文核验，关键上线决策前请再打开原文确认。OWASP 引用为 2025 版二次整理，上线前以 OWASP 官方最新版为准；小程序平台具体 AI 接入细则未核验，落地前请核对目标平台最新规范。"
+  },
+  {
+    "id": "index.html#(intro)",
+    "source": "index.html",
+    "heading": "(intro)",
+    "text": "PDE 学习站 | 从全栈开发到 PDE 解决方案工程师 PDE 是什么 日常工作 路线图 架构与用例 资源 作品集 反模式 实验场 来源 PDE 学习站：从全栈开发到 PDE 解决方案工程师 Prompt-Driven Engineering：把 Prompt 当软件构件来做，而不是当聊天咒语来写。 核心目标：每个 Prompt（或一组 Prompt）都要 结构清楚、行为稳定、能测、能改、能复用 。解决方案工程师交付的不是一段文本，而是一个可回归测试、可回滚、可审计、可算成本的系统。 面向读者：Java、Web、小程序背景的全栈开发工程师 / 开发负责人，目标是 PDE 解决方案工程师。本站内容整合自 2026-10-28 的调研报告，关键来源见文末；PDE 不是偏微分方程。"
+  },
+  {
+    "id": "index.html#PDE 是什么",
+    "source": "index.html",
+    "heading": "PDE 是什么",
+    "text": "术语提醒： 检索未发现 PDE / POG 的统一官方标准定义，本站按工作定义使用：PDE 是端到端的解决方案工程学科，POG 是其中负责治理的一层。对外沟通时先亮明定义，可优先使用 AI Solution Engineer、LLM Engineer、PromptOps / LLM Governance 等更通用的说法。 概念 核心问题 典型产出 Prompt Engineering 这一次怎么写才答得好 系统提示、Few-shot 示例、输出格式约定 PDD（提示驱动开发） 开发循环快不快：意图 → 生成 → 评估 → 迭代 规约式提示 + 测试用例 + 迭代后的代码 PDE（本文工作定义） 这个 Prompt 本身质量够不够，业务目标如何变成可靠系统 方案设计、提示资产、评测集、部署与治理全套 POG / PromptOps 全公司怎么管、复用、审计这些资产 提示目录、版本与别名、审批流、审计日志 上下文工程 模型每一步看到什么信息 检索策略、分块与排序、记忆分层、上下文预算 最优先的三件事： （1）做一个带结构化输出 + 黄金评测集的 RAG 问答；（2）做一个带工具调用 + 人工确认的审批型工作流；（3）把提示入库、版本化、接可观测，形成可展示的解决方案交付物，而不是一堆聊天截图。"
+  },
+  {
+    "id": "index.html#解决方案工程师的一天",
+    "source": "index.html",
+    "heading": "解决方案工程师的一天",
+    "text": "发现： 区分能用规则/搜索解决还是必须用 LLM；定义成功指标、收集真实语料与合规边界。交付：用例画布、成功指标、风险与数据清单。 方案设计： 画架构、选模型分层、定 Token / 延迟 / 成本预算。交付：架构图、选型表、预算。 提示架构： 写系统提示、拆分路由/抽取/综合/评审提示、定 JSON Schema 与工具 Schema。交付：带版本的提示模板库。 评测： 建黄金集、跑基线、做回归与失败分类。交付：评测报告、回归门禁。 部署： 灰度与别名切换、降级策略、限流与成本熔断。交付：发布清单、回滚方案。 治理（POG）： PR 式评审、审批、审计、定期复审过期提示。交付：提示目录、变更日志、审计记录。 运营复盘： 看成本、延迟、失败率与用户反馈，向业务方汇报质量-成本-延迟三维结果。 关键判断： 先找最简单的解法，只有在需要时才增加复杂度。单次调用 + 检索能解决的不要上智能体；步骤固定用工作流；步骤不可预知才用智能体，并加步数上限与护栏。"
+  },
+  {
+    "id": "index.html#分阶段路线图（0–8 阶段）",
+    "source": "index.html",
+    "heading": "分阶段路线图（0–8 阶段）",
+    "text": "建议节奏仅供参考：全职约 3–4 个月、业余约 6 个月走完 0–6 阶段并做出 2 个可展示项目；7–8 阶段在真实项目中持续打磨。每个阶段都有出关标准，做不到就不要急于进入下一阶段。 阶段 0 · 心智模型（1 周）： Token、上下文窗口、幻觉本质、一次调用 vs 工作流 vs 智能体。出关：能向非技术同事讲清为什么不能直接把 LLM 当数据库用。 阶段 1 · 基础提示设计（1–2 周）： 角色分工、五段结构、分隔符、Few-shot 与 Chain-of-Thought 的适用边界。出关：同一提示连续跑 10 次，格式与关键字段稳定可度量。 阶段 2 · 结构化输出与 Schema（1–2 周）： JSON Schema / 结构化输出、工具 Schema、服务端二次校验、校验失败重试与降级。出关：输出 100 次零解析失败，并能拦截“Schema 通过但业务值错误”。 阶段 3 · RAG 与工具调用（2–3 周）： 摄入、分块、混合检索、重排、带引用生成、权限过滤；工具职责单一、写操作人工确认。出关：能画出 RAG 全链路并指出每一环的失败模式。 阶段 4 · 智能体工作流（2–3 周）： 提示链、路由、并行、编排者-工人、评估者-优化者、智能体循环、停止条件与人机协作。出关：能为新需求写出工作流 vs 智能体决策记录。 阶段 5 · 评测与测试（2–3 周，与 3–4 并行）： 黄金集、三层评分（确定性检查、RAG 指标、LLM-as-Judge）、回归门禁、轨迹评测。出关：说“新提示是否更好”时用数字、阈值与样本量，而不是感觉。 阶段 6 · 可观测与成本/延迟（1–2 周）： 提示版本、Token、延迟分位、工具链、成本归属；路由、缓存、裁剪、熔断。出关：能回答每个功能每天花多少钱、慢在哪里、失败集中在哪三类。 阶段 7 · 安全与合规（1–2 周）： OWASP LLM Top 10（2025，二次整理，上线前以官网最新版为准）、提示注入、最小权限、脱敏、红队测试。出关：能为上线方案写出威胁模型与控制清单。 阶段 8 · 企业治理 POG（持续）： 注册表、不可变版本 + 语义化版本 + 别名、生命周期、审批、审计、复用度量。出关：5 分钟内回答线上跑的是哪个提示版本、谁评审过、回滚要几步。 算一下进度"
+  },
+  {
+    "id": "index.html#全栈迁移地图",
+    "source": "index.html",
+    "heading": "全栈迁移地图",
+    "text": "已有能力 在 PDE 中的对应能力 Spring Boot 分层、REST 契约、DTO 校验 提示 Schema、工具 Schema、输出校验层（不要把校验交给模型） 微服务、网关、限流、熔断 LLM 网关：路由、限流、成本熔断、降级、超时与重试 权限 RBAC、审计日志 RAG 检索时权限过滤、提示版本审计、工具调用审计 前端 SSE / 流式渲染、表单确认 流式回答渲染、写操作前人工确认 UI、引用来源展示 小程序轻量前端 前端只做展示与确认，模型调用、密钥、提示模板一律放后端；不直连模型厂商 API 单元 / 集成测试、CI 黄金集回归门禁、提示变更 CI、生产回放（线上失败转为新用例）"
+  },
+  {
+    "id": "index.html#通用参考架构与五个必会用例",
+    "source": "index.html",
+    "heading": "通用参考架构与五个必会用例",
+    "text": "用户（Web / 小程序 / 客服工作台）→ 鉴权 + 限流 → API 网关 / BFF（Java Spring Boot）→ 提示注册表 + 模型路由 + 成本熔断 → RAG 检索（权限过滤 → 混合检索 → 重排）+ 工具调用 → LLM 调用（结构化输出，超时 + 重试上限）→ 输出校验（Schema → 规则 → 安全 → 证据）→ 自动执行 / 人工确认 / 转人工 → 业务系统 + 审计日志 + 可观测 Java 落地要点（已核验文档）： Spring AI 提供跨厂商 Chat / Embedding API、结构化输出到 POJO、向量库、工具调用、可观测、RAG 与 MCP；LangChain4j 提供统一 LLM / 向量库 API、AiServices、Agent 与 RAG 工具箱。已在 Spring 生态优先 Spring AI；需要更丰富的 Agent 语义可看 LangChain4j，不要在同一个服务里混用两套提示与追踪体系。 用例 模式 评测要点 客服助手 路由 → RAG → 带引用草稿 → 人工确认；退款等高风险强制转人工 引用准确率、拒答与转人工恰当率、客服采纳率、注入测试 代码评审 / 开发助手 并行评审（安全、性能、可读性、测试）→ 聚合去重 → 结构化评论，不自动合入 检出率、误报率、严重度准确率、行号有效率 文档 / 知识问答 摄入 → 分块 → 混合检索 → 重排 → 带引用生成 → 证据校验 Faithfulness、答案相关性、上下文精度/召回、引用准确率、拒答恰当率 数据分析与报告 查询计划 → 白名单 SQL 校验 → 只读执行 → 结构化报告；模型不直接写生产库 SQL 可执行率、结果正确率、口径错误率、数字与图表一致率 工作流自动化 编排者-工人或固定工作流 + 状态机，断点续跑、幂等、失败转人工 工具选择与参数正确率、步数、循环检测、端到端成功率 选型速查： 一次检索 + 一次生成能解决 → 单次调用 + RAG；步骤固定 → 固定工作流；步骤取决于输入 → 智能体（带上限与人工确认）；写操作、资金、合规承诺 → 工作流 + 人工确认。"
+  },
+  {
+    "id": "index.html#官方文档（优先读）",
+    "source": "index.html",
+    "heading": "官方文档（优先读）",
+    "text": "Anthropic《Building effective AI agents》 ：工作流 vs 智能体、五种模式、工具设计（2026-10-28 直接读取核验） Anthropic 提示工程概览 ：提示结构、XML 标签、结构化输出 OpenAI 提示工程指南 ：系统消息、Few-shot、函数调用、降幻觉 OpenAI《A Practical Guide to Building Agents》 Spring AI 参考文档 ：结构化输出、向量库、工具调用、可观测、RAG（已核验） LangChain4j 文档 ：统一 API、AiServices、Agent、RAG（已核验）"
+  },
+  {
+    "id": "index.html#课程与书籍",
+    "source": "index.html",
+    "heading": "课程与书籍",
+    "text": "DeepLearning.AI 短课（来源明确标注免费，报名前以课程页为准）：《ChatGPT Prompt Engineering for Developers》《LangChain for LLM Application Development》《Building Systems with the ChatGPT API》《LangChain: Chat with Your Data》等，入口见来源清单。 书籍（不写价格）：《AI Engineering》（Chip Huyen）、《Hands-On Large Language Models》《Prompt Engineering for LLMs》《Building Agentic AI Systems》《Designing Machine Learning Systems》。 Java 转 AI 路线图： From Java Developer to AI Engineer （来源明确标注免费资源）。"
+  },
+  {
+    "id": "index.html#评测与可观测工具",
+    "source": "index.html",
+    "heading": "评测与可观测工具",
+    "text": "评测：Ragas（RAG 专项）、DeepEval（Pytest 风格断言与 CI 门禁）、Promptfoo（YAML 测试集与红队）、Inspect AI。 可观测：Langfuse（追踪、成本、提示版本、评测）、LangSmith（LangChain 生态）、Arize Phoenix（OpenTelemetry，Java 支持较好）、Opik。 提示注册表与网关：MLflow Prompt Registry（Git 式版本 + 别名）、LiteLLM / Portkey 等网关（按产品授权为准）。 编排与低代码：LangChain / LangGraph、LlamaIndex、Dify、Flowise、LangFlow（生产前需评估提示版本与可观测是否满足治理要求）。 标注规则：免费仅在来源明确写明时标注；未明确的一律不推断价格，选型与报名前以官网当前页面为准。"
+  },
+  {
+    "id": "index.html#作品集：6 个项目",
+    "source": "index.html",
+    "heading": "作品集：6 个项目",
+    "text": "每个项目必备：README（业务问题、架构图、成功指标、成本/延迟数据）、 prompts/ （版本化模板 + 变更说明）、 schemas/ 、 evals/ （黄金集 + Rubric + 回归报告）、脱敏追踪、可观测截图、 governance.md （负责人、审批、回滚步骤）。没有数字的项目，在解决方案工程师面试中说服力会大打折扣。 企业文档问答（RAG，最优先）： Spring Boot + 向量库，100 篇文档，权限过滤，流式 Web 问答；50 条黄金集，含干扰、过期、无答案陷阱。 客服 Copilot： 意图路由 → RAG → 草稿 → 人工确认，高风险强制转人工；按意图切片的采纳率与转人工恰当率。 代码评审助手： PR diff 分块 → 并行评审 → 聚合去重 → 结构化评论；不自动合入。 数据问答与报告生成： 自然语言 → 查询计划 → 白名单 SQL 校验 → 只读执行 → 结构化报告；拒绝写语句测试。 审批型工作流智能体： 分类 → 抽取 → 校验 → 审批确认 → 执行 → 审计，断点续跑与幂等；轨迹评测。 提示治理平台（POG 最小实现）： 目录、版本与别名、PR 评审、审计日志、灰度与回滚演练；可复用前五个项目的提示。 面试 30 秒叙事： 业务问题是什么 → 为什么选这个架构而不是更复杂的智能体 → 提示与 Schema 怎么设计 → 评测集、基线与改进数字是多少 → 上线后成本、延迟、失败率是多少 → 如果重做会改哪里。"
+  },
+  {
+    "id": "index.html#反模式与自查",
+    "source": "index.html",
+    "heading": "反模式与自查",
+    "text": "无评测就上线；提示写进业务代码字符串；原地修改生产提示；上下文无脑堆料。 只在提示里要求 JSON，不用 Schema / 校验；Schema 通过就以为值正确；检索错了怪模型、模型错了换更大模型。 过度依赖 LLM-as-Judge；给智能体过大权限、无停止条件；把用户输入、检索文档、工具返回都当作指令。 系统提示、密钥、内部规则泄露到客户端 / 日志；无成本、延迟预算与熔断；先上智能体，再证明必要性。 只测“好问题”，不测拒答、干扰、过期、无答案、越权、注入五类负例。 每两周自查： 能不看资料画出 RAG + 工具 + 评测 + 治理架构图吗？每个项目都有黄金集、基线与回归报告吗？能说出单任务成本、P95 延迟、最常见的 3 类失败吗？提示都在注册表里有版本、负责人与回滚步骤吗？写过至少 20 条注入 / 越权 / 拒答负例并让它们进回归吗？"
+  },
+  {
+    "id": "index.html#PDE 质量清单与实验场",
+    "source": "index.html",
+    "heading": "PDE 质量清单与实验场",
+    "text": "五项质量自评： 结构清楚：角色、目标、约束、输入输出都写明了 行为稳定：同一输入多次跑，结果格式和口径基本一致 能测：有 5 条以上测试用例和评分标准 能改：改动点集中，改一处不破坏其他用例 能复用：命名、版本、适用场景和禁忌都写清楚了 算一下得分 先写下意图，再贴一个结构化版本，检查七个部件是否齐全。这一步不调用任何模型，重点是把“构件”本身写清楚；本页的状态只在本次浏览内有效，不会保存。 意图（一句话） 结构化 Prompt 草稿 检查七个部件是否齐全 下一步建议：把这份草稿存到 prompts/，再到 eval/ 给它配测试用例。"
+  },
+  {
+    "id": "index.html#仓库里的现成构件",
+    "source": "index.html",
+    "heading": "仓库里的现成构件",
+    "text": "prompts/code-review.md ：代码评审 Prompt 构件范例 prompts/requirements-breakdown.md ：需求拆解 Prompt 构件 eval/code-review-cases.md 、 eval/requirements-breakdown-cases.md ：测试用例和评分标准 docs/pdd-loop.md 、 docs/pog-governance.md ：PDD 循环与 POG 治理 java/src/main/java/pde/PromptTemplate.java ：Prompt 模板渲染最小示例"
+  },
+  {
+    "id": "index.html#主要来源",
+    "source": "index.html",
+    "heading": "主要来源",
+    "text": "Anthropic《Building effective AI agents》： https://www.anthropic.com/engineering/building-effective-agents （2026-10-28 直接读取核验） Spring AI 参考文档： https://docs.spring.io/spring-ai/reference/ （已核验） LangChain4j 文档： https://docs.langchain4j.dev （已核验） OpenAI 提示工程指南： https://platform.openai.com/docs/guides/prompt-engineering PDD 宣言： https://dev.to/blame76/prompt-driven-development-pdda-manifesto-against-comfortable-guessing-4m4a PromptOps 治理指南： https://www.promptopsguide.org/p/governance.html DeepLearning.AI 课程指南（来源整理）： https://careery.pro/blog/ai-careers/deeplearning-ai-courses-guide 免费 AI 课程资源整理： https://mindwiredai.com/2026/03/30/free-ai-courses-resources-2026/ 完整 49 条来源见调研报告；除标注“已核验”外，其余为检索摘要，未逐页全文核验，关键上线决策前请再打开原文确认。OWASP 引用为 2025 版二次整理，上线前以 OWASP 官方最新版为准；小程序平台具体 AI 接入细则未核验，落地前请核对目标平台最新规范。"
+  }
+]
