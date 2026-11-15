@@ -23,8 +23,8 @@
   --bg:#faf7f0; --surface:#fffdf7; --surface2:#f1ebdd; --ink:#1a1712; --ink2:#5d574c; --line:#d9d1bf;
   --accent:#9e2b1e; --accent-soft:#f6e3dc;
   --teal:#33604a; --teal-soft:#e2ecdf; --amber:#9a6206; --amber-soft:#f7ecd2; --red:#a52a20; --red-soft:#f9e4e0;
-  --code-bg:#211d17; --code-ink:#efe9db;
-  --panel:#1a1712; --panel-ink:#f5efe1;
+  --code-bg:#f1ebdd; --code-ink:#1a1712;
+  --panel:#f1ebdd; --panel-ink:#1a1712;
   color-scheme:light;
 }
 :root[data-theme="dark"]{
@@ -39,8 +39,8 @@
   --bg:#e9edda; --surface:#f4f7ea; --surface2:#dce3c6; --ink:#25301e; --ink2:#57644d; --line:#bcc9a2;
   --accent:#93351f; --accent-soft:#f0ddd0;
   --teal:#2e6b46; --teal-soft:#d3e4c6; --amber:#8f6208; --amber-soft:#eee2b6; --red:#a83226; --red-soft:#f0d8cb;
-  --code-bg:#22301f; --code-ink:#e6efdc;
-  --panel:#22301f; --panel-ink:#e9f0dc;
+  --code-bg:#dce3c6; --code-ink:#25301e;
+  --panel:#dce3c6; --panel-ink:#25301e;
   color-scheme:light;
 }
 *{box-sizing:border-box}
@@ -238,7 +238,7 @@ td b{color:var(--ink)}
 .markline{display:flex;align-items:center;gap:8px;font-size:14px;margin-top:4px}
 .markline input{width:18px;height:18px;accent-color:var(--accent)}
 /* code */
-pre{background:var(--code-bg);color:var(--code-ink);padding:20px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:12.8px;line-height:1.75;margin:0}
+pre{background:var(--code-bg);color:var(--code-ink);border:1px solid var(--line);padding:20px;overflow-x:auto;font-family:"JetBrains Mono",monospace;font-size:12.8px;line-height:1.75;margin:0}
 /* lab & buttons */
 .lab{background:var(--surface);border:1px solid var(--line);border-top:2px solid var(--ink);padding:22px}
 .lab textarea{width:100%;min-height:190px;background:var(--bg);color:var(--ink);border:1px solid var(--line);padding:12px;font-family:"JetBrains Mono",monospace;font-size:13px;line-height:1.7;resize:vertical}
@@ -331,7 +331,7 @@ footer{margin-top:64px;border-top:3px solid var(--ink);padding:24px 0 46px;font-
 .hp-stat{border:none;padding:0;background:transparent}
 .hp-stat b{display:block;font-family:"Noto Serif SC",serif;font-weight:900;font-size:23px;line-height:1.2;color:var(--ink)}
 .hp-stat span{font-size:12px;color:var(--ink2)}
-.hp-continue{background:var(--panel);color:var(--panel-ink);border:1px solid var(--line);padding:26px;display:flex;flex-direction:column}
+.hp-continue{background:var(--panel);color:var(--panel-ink);border:1px solid var(--line);border-top:3px solid var(--accent);padding:26px;display:flex;flex-direction:column}
 .hp-continue .k{font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.12em;opacity:.75}
 .hp-continue h3{font-size:22px;margin:10px 0 8px;color:var(--panel-ink)}
 .hp-continue p{font-size:14px;margin:0;opacity:.88}
@@ -373,8 +373,8 @@ footer{margin-top:64px;border-top:3px solid var(--ink);padding:24px 0 46px;font-
 .hp-week b{display:block;font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--accent)}
 .hp-week:hover{background:var(--surface2)}
 .hp-week:focus-visible{outline:2px solid var(--accent);outline-offset:-2px}
-.hp-week.done{background:var(--ink);color:var(--bg)}
-.hp-week.done b{color:var(--bg);opacity:.75}
+.hp-week.done{background:var(--teal-soft);color:var(--ink)}
+.hp-week.done b{color:var(--teal)}
 .hp-week.current{box-shadow:inset 0 0 0 2px var(--accent)}
 .hp-lib-tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:8px}
 .hp-lib-tools input[type="search"]{flex:1;min-width:200px;background:transparent;color:var(--ink);border:1px solid var(--ink);padding:11px 13px;font-family:inherit;font-size:14.5px;min-height:44px}
@@ -836,6 +836,74 @@ body.in-detail .bottom-tabs{display:none}
 .detail-nav-note{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink2)}
 .proj-bottom .btn:disabled{opacity:.35;cursor:not-allowed}
 @media (prefers-reduced-motion: reduce){ .detail-page.active{animation:none} }
+
+/* ============================================================
+   独立进度页 · 学习数据看板 / 成就 / 技能覆盖
+   数字全部由站内已有记录现场算出（20 周勾选、已读、打卡、
+   PDE 出关自查、收藏、工作台本地保存），不新增任何记录。
+   沿用编辑部风：直角、纸面、墨线、砖红点缀，颜色走主题变量。
+   ============================================================ */
+.pg-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:24px 30px;margin-top:4px}
+.pg-kpi{border-top:2px solid var(--ink);padding-top:12px}
+.pg-kpi .pg-k{display:flex;align-items:center;gap:7px;font-family:"JetBrains Mono",monospace;font-size:11.5px;font-weight:600;letter-spacing:.1em;color:var(--accent)}
+.pg-kpi .pg-k .ic{width:14px;height:14px}
+.pg-kpi b{display:block;font-family:"Noto Serif SC",serif;font-size:27px;font-weight:900;line-height:1.3;margin-top:5px}
+.pg-kpi span{display:block;font-size:12.5px;color:var(--ink2);margin-top:2px;line-height:1.6}
+.pg-days{display:flex;gap:6px;flex-wrap:wrap;margin-top:4px}
+.pg-day{width:54px;border:1px solid var(--line);background:transparent;padding:7px 0 6px;text-align:center}
+.pg-day b{display:block;font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:600;line-height:1.3}
+.pg-day span{display:block;font-size:11px;color:var(--ink2);line-height:1.4}
+.pg-day.on{background:var(--teal-soft);border-color:var(--teal)}
+.pg-day.on span{color:var(--teal)}
+.pg-day.today{box-shadow:inset 0 0 0 2px var(--accent)}
+.pg-stage-row{display:flex;align-items:center;gap:16px;padding:15px 0;border-bottom:1px solid var(--line)}
+.pg-stage-row:first-child{border-top:1px solid var(--line)}
+.pg-stage-main{flex:1;min-width:0}
+.pg-stage-main b{display:block;font-family:"Noto Serif SC",serif;font-size:16.5px;font-weight:900;line-height:1.45}
+.pg-stage-main span{display:block;font-size:12.5px;color:var(--ink2);margin-top:1px}
+.pg-bar{height:9px;background:var(--surface2);border:1px solid var(--line);margin-top:8px;max-width:520px}
+.pg-bar i{display:block;height:100%;background:var(--accent);width:0;transition:width .45s ease}
+.pg-stage-row .btn{flex-shrink:0}
+.pg-weeks-note{font-size:13px;color:var(--ink2);margin:12px 0 0}
+#pgWeeks .hp-week{cursor:default}
+#pgWeeks .hp-week:hover{background:transparent}
+#pgWeeks .hp-week.done:hover{background:var(--teal-soft)}
+.pg-gap{margin:0 0 16px}
+.pg-gap-head{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.pg-gap-head b{font-family:"Noto Serif SC",serif;font-size:15.5px;font-weight:900}
+.pg-gap-head span{font-family:"JetBrains Mono",monospace;font-size:11.5px;color:var(--ink2)}
+.pg-gap p{font-size:13px;color:var(--ink2);margin:5px 0 0}
+.pg-skills{display:grid;grid-template-columns:1fr 1fr;gap:8px 34px;margin-top:6px}
+.pg-skills h4{display:flex;align-items:center;gap:8px;font-family:"Noto Serif SC",serif;font-size:16.5px;font-weight:900;margin:0;padding-bottom:8px;border-bottom:2px solid var(--ink)}
+.pg-skills h4 .ic{width:17px;height:17px;color:var(--accent)}
+.pg-skill-list{list-style:none;margin:0;padding:0}
+.pg-skill{display:flex;gap:10px;padding:9px 0;border-bottom:1px solid var(--line);align-items:flex-start}
+.pg-skill:last-child{border-bottom:none}
+.pg-skill-main{flex:1;min-width:0}
+.pg-skill-main b{display:block;font-size:14.5px;line-height:1.45}
+.pg-skill-main span{display:block;font-size:12.5px;color:var(--ink2);line-height:1.55}
+.pg-chip{font-family:"JetBrains Mono",monospace;font-size:10.5px;font-weight:600;letter-spacing:.05em;padding:2px 7px;border:1px solid currentColor;white-space:nowrap;margin-top:3px;flex-shrink:0}
+.pg-chip.have{color:var(--teal)}
+.pg-chip.learn{color:var(--amber)}
+.pg-chip.todo{color:var(--ink2)}
+.pg-chip.cond{color:var(--accent)}
+.pg-ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px 28px;margin-top:4px}
+.pg-ach{border-top:2px solid var(--line);padding-top:11px}
+.pg-ach .ic{width:19px;height:19px;color:var(--ink2);opacity:.55}
+.pg-ach b{display:block;font-family:"Noto Serif SC",serif;font-size:15.5px;font-weight:900;margin-top:6px;line-height:1.45}
+.pg-ach p{font-size:12.5px;color:var(--ink2);margin:3px 0 0;line-height:1.6}
+.pg-ach .pg-ach-state{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;margin-top:6px;display:block;color:var(--ink2)}
+.pg-ach.on{border-top-color:var(--teal)}
+.pg-ach.on .ic{color:var(--teal);opacity:1}
+.pg-ach.on .pg-ach-state{color:var(--teal)}
+.pg-next-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;padding:14px 0;border-bottom:1px solid var(--line)}
+.pg-next-row:first-child{border-top:1px solid var(--line)}
+.pg-next-row .pg-next-main{flex:1;min-width:220px}
+.pg-next-row b{font-family:"Noto Serif SC",serif;font-size:16px;font-weight:900;display:block;line-height:1.5}
+.pg-next-row span{font-size:13px;color:var(--ink2);display:block;margin-top:1px}
+@media(max-width:900px){ .pg-kpis,.pg-ach-grid{grid-template-columns:repeat(2,1fr)} .pg-skills{grid-template-columns:1fr} }
+@media(max-width:640px){ .pg-kpis,.pg-ach-grid{grid-template-columns:1fr} .pg-stage-row{flex-wrap:wrap} .pg-day{width:46px} }
+@media (prefers-reduced-motion: reduce){ .pg-bar i{transition:none} }
 </style>
 </head>
 <body>
@@ -881,19 +949,22 @@ body.in-detail .bottom-tabs{display:none}
 <symbol id="i-pen" viewBox="0 0 24 24"><path d="M17 3a2.85 2.83 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5z"/><path d="M15 5l4 4"/></symbol>
 <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.3"/><path d="M12 7v5.2l3.4 2"/></symbol>
 <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3.5 3.5v17h17"/><path d="M8 16.5v-5M12.5 16.5V8M17 16.5V8"/></symbol>
+<symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c1 3.2-1.4 4.9-2.8 6.3C7.8 10.7 6.8 12.2 6.8 14.2A5.2 5.2 0 0 0 12 19.4a5.2 5.2 0 0 0 5.2-5.2c0-1.5-.6-2.7-1.4-3.9-.5 1-1.2 1.7-2.1 2.1.3-2.9-.3-6.4-1.7-9.4z"/><path d="M12 21.5a7.5 7.5 0 0 1-7.5-7.5c0-2 .7-3.7 1.8-5.2"/></symbol>
+<symbol id="i-trophy" viewBox="0 0 24 24"><path d="M7 4h10v5.5a5 5 0 0 1-10 0z"/><path d="M7 5.5H4a3 3 0 0 0 3.2 3M17 5.5h3a3 3 0 0 1-3.2 3M12 14.5V17M8.8 20.5h6.4M12 17l-1.2 3.5h2.4z"/></symbol>
 </defs></svg>
 <nav id="siteNav" aria-label="站点导航"><div class="wrap">
   <div class="wiz-meta"><div class="brand">FDE 转型站 <span>· 学习平台</span></div><div class="wiz-side"><button type="button" class="nav-toggle" id="navToggle" aria-expanded="true" aria-controls="navIndex"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 15l6-6 6 6"/></svg>目录</button><div class="theme-switch" role="group" aria-label="主题切换">
     <button type="button" data-theme-set="light" aria-pressed="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>浅色</button>
     <button type="button" data-theme-set="dark" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>深色</button>
     <button type="button" data-theme-set="eye" aria-pressed="false"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/><circle cx="12" cy="12" r="3"/></svg>护眼</button>
-  </div><button type="button" class="nav-search-btn" id="gsOpenBtn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>搜索<kbd>Ctrl K</kbd></button><div class="wiz-count" id="wizCount">第 1 页 / 共 20 页</div></div></div>
+  </div><button type="button" class="nav-search-btn" id="gsOpenBtn" aria-haspopup="dialog"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>搜索<kbd>Ctrl K</kbd></button><div class="wiz-count" id="wizCount">第 1 页 / 共 21 页</div></div></div>
   <div class="wiz-track" aria-hidden="true"><i id="wizTrack"></i></div>
   <div class="nav-index" id="navIndex">
   <div class="primary-nav" role="navigation" aria-label="主导航">
     <button type="button" class="pn-item" data-primary-go="home"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg><span><b>首页</b><small>今日任务 · 进度 · 最新上线</small></span></button>
     <button type="button" class="pn-item" data-primary-go="path"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg><span><b>学习路径</b><small>全部内容索引 · 按分组直达每一页</small></span></button>
     <button type="button" class="pn-item" data-primary-go="fdecases"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg><span><b>案例库</b><small>FDE 真实案例 · 可按厂商与行业筛</small></span></button>
+    <button type="button" class="pn-item" data-primary-go="progress"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg><span><b>我的进度</b><small>数据看板 · 成就 · 技能覆盖</small></span></button>
     <button type="button" class="pn-item" data-primary-fav="1"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg><span><b>我的收藏</b><small>收藏的页面与案例 · 稍后读</small></span></button>
     <button type="button" class="pn-item" data-primary-go="lab"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg><span><b>工作台</b><small>Prompt 工作台 · 模板与自检</small></span></button>
   </div>
@@ -901,7 +972,7 @@ body.in-detail .bottom-tabs{display:none}
   <div class="side-groups" role="navigation" aria-label="内容分组">
     <button type="button" data-cat-group="fde" data-group-go="pathGroupFde"><svg class="ic" aria-hidden="true"><use href="#i-compass"/></svg>FDE 转型<span class="sg-count">7 页</span></button>
     <button type="button" data-cat-group="pde" data-group-go="pathGroupPde"><svg class="ic" aria-hidden="true"><use href="#i-wrench"/></svg>PDE 手艺基础<span class="sg-count">7 页</span></button>
-    <button type="button" data-cat-group="practice" data-group-go="pathGroupPractice"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg>实战与作品集<span class="sg-count">6 页</span></button>
+    <button type="button" data-cat-group="practice" data-group-go="pathGroupPractice"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg>实战与作品集<span class="sg-count">7 页</span></button>
   </div>
   <div class="side-recent" id="sideRecent">
     <div class="side-label" aria-hidden="true"><b>最近 · 继续</b></div>
@@ -917,6 +988,7 @@ body.in-detail .bottom-tabs{display:none}
   <button type="button" class="bt-item" data-tab-go="home"><svg class="ic" aria-hidden="true"><use href="#i-home"/></svg>首页</button>
   <button type="button" class="bt-item" data-tab-go="path"><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>路径</button>
   <button type="button" class="bt-item" data-tab-go="fdecases"><svg class="ic" aria-hidden="true"><use href="#i-layers"/></svg>案例</button>
+  <button type="button" class="bt-item" data-tab-go="progress"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>进度</button>
   <button type="button" class="bt-item" data-tab-go="fav"><svg class="ic" aria-hidden="true"><use href="#i-star"/></svg>收藏</button>
   <button type="button" class="bt-item" data-tab-go="search"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" class="ic"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>搜索</button>
 </div>
@@ -931,7 +1003,7 @@ body.in-detail .bottom-tabs{display:none}
         <div class="hp-stat"><b>20 周</b><span>五阶段转型路径</span></div>
         <div class="hp-stat"><b>31 个</b><span>案例进入每日轮换池</span></div>
         <div class="hp-stat"><b>18 个</b><span>练习进入每日轮换池</span></div>
-        <div class="hp-stat"><b>20 步</b><span>全部章节可直达</span></div>
+        <div class="hp-stat"><b>21 页</b><span>全部章节可直达</span></div>
       </div>
     </div>
     <div class="hp-continue">
@@ -1001,7 +1073,7 @@ body.in-detail .bottom-tabs{display:none}
     <div class="hp-path-card"><span class="num">手艺基础 · PDE 章</span><h4>Prompt 当构件</h4><p>FDE 的核心手艺单独成章：概念、日常、9 阶段学习路线、解决方案与企业真实案例，加上 Prompt 工作台动手练。</p><button class="btn ghost" type="button" data-goto="starter">进入 PDE 章 →</button><button class="btn ghost" type="button" data-goto="lab" style="margin-top:8px">去 Prompt 工作台 →</button></div>
   </div>
 
-  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>我的进度 · 20 周</h3><p>点一周的卡片切换完成状态，记录只保存在这台浏览器里。当前周（第一未完成周）用琥珀色边框标出。</p></div><button class="btn ghost" type="button" id="hpResetWeeks" style="padding:7px 14px;font-size:13.5px">清空进度记录</button></div>
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg>我的进度 · 20 周</h3><p>点一周的卡片切换完成状态，记录只保存在这台浏览器里。当前周（第一未完成周）用琥珀色边框标出。全部学习数据——打卡、五阶段、技能覆盖与成就——汇总在独立进度页。</p></div><span style="display:flex;gap:8px;flex-wrap:wrap"><button class="btn" type="button" data-goto="progress" style="padding:7px 14px;font-size:13.5px">打开进度页 →</button><button class="btn ghost" type="button" id="hpResetWeeks" style="padding:7px 14px;font-size:13.5px">清空进度记录</button></span></div>
   <div class="hp-weekboard">
     <p style="margin:0;font-size:14.5px" id="hpWeekSummary">已完成 0 / 20 周 · 每周约 10–12 小时</p>
     <div class="hp-weeks" id="hpWeeks"></div>
@@ -1060,9 +1132,10 @@ body.in-detail .bottom-tabs{display:none}
   </div>
 
   <div class="path-group" id="pathGroupPractice">
-    <div class="path-group-head"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg><span class="pg-no">分组 3</span><h3>实战与作品集</h3><span class="pg-count">6 页</span><p>动手与产出：工作台练手、资料查阅、作品集方案，以及更新日志与来源。</p></div>
+    <div class="path-group-head"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg><span class="pg-no">分组 3</span><h3>实战与作品集</h3><span class="pg-count">7 页</span><p>动手与产出：工作台练手、资料查阅、作品集方案，以及更新日志与来源。</p></div>
     <div class="path-list">
       <button type="button" class="path-item" data-goto="lab"><svg class="ic" aria-hidden="true"><use href="#i-flask"/></svg><span><b>Prompt 工作台 <span class="path-read"></span></b><small>Prompt 工作台 · 动手练——模板、变量、版本快照与本地规则自检</small></span><span class="path-arrow">→</span></button>
+      <button type="button" class="path-item" data-goto="progress"><svg class="ic" aria-hidden="true"><use href="#i-chart"/></svg><span><b>我的进度 <span class="path-read"></span></b><small>我的进度 · 学习数据看板——打卡、20 周与五阶段进度、技能覆盖与成就，全部由已有记录算出</small></span><span class="path-arrow">→</span></button>
       <button type="button" class="path-item" data-goto="resources"><svg class="ic" aria-hidden="true"><use href="#i-cap"/></svg><span><b>学习资料 <span class="path-read"></span></b><small>学习资料——配套阅读与参考资料</small></span><span class="path-arrow">→</span></button>
       <button type="button" class="path-item" data-goto="portfolio"><svg class="ic" aria-hidden="true"><use href="#i-award"/></svg><span><b>作品集 <span class="path-read"></span></b><small>作品集 · 6 个项目——每个项目一页完整方案：指标、架构、评测与验收</small></span><span class="path-arrow">→</span></button>
       <button type="button" class="path-item" data-goto="updates"><svg class="ic" aria-hidden="true"><use href="#i-refresh"/></svg><span><b>每周更新 <span class="path-read"></span></b><small>每周更新 · 案例与学习方案——每周一 / 三 / 五的更新记录</small></span><span class="path-arrow">→</span></button>
@@ -1070,6 +1143,39 @@ body.in-detail .bottom-tabs{display:none}
       <button type="button" class="path-item" data-goto="sources"><svg class="ic" aria-hidden="true"><use href="#i-link"/></svg><span><b>来源 <span class="path-read"></span></b><small>来源清单——全站内容的出处汇总</small></span><span class="path-arrow">→</span></button>
     </div>
   </div>
+</div></section>
+
+<section class="wizard-page" id="progress" data-step-title="我的进度 · 学习数据看板" data-step-short="我的进度"><div class="wrap">
+  <div class="sec-head"><span class="k">我的进度 / 数据看板</span><h2>走到哪了，一页看清</h2>
+  <p>这一页不新增任何记录：下面的每个数字都由站里<b>已有的记录</b>现场算出——首页进度板的 20 周勾选、读到 80% 自动打上的已读标记、每天打开自动记的打卡、PDE 9 个阶段的出关自查、收藏与 Prompt 工作台的本地保存。换一台设备或清掉浏览器数据会从零开始；其中 PDE 出关勾选只在本次浏览内有效，关掉页面即清零，看板里会照实标注。</p></div>
+
+  <div class="pg-kpis" id="pgKpis"></div>
+
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-flame"/></svg>近 14 天打卡</h3><p>每天打开站点自动记一次打卡，和侧栏、首页「继续学习」条是同一份记录；绿色是已打卡，砖红描边是今天。</p></div><span class="hp-cycle" id="pgStreakLine"></span></div>
+  <div class="pg-days" id="pgDays"></div>
+
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-route"/></svg>五阶段进度 · 20 周</h3><p>与首页进度板同一份记录：在首页或这里看都一样，切换完成状态仍在首页的 20 周进度板上点。点「打开阶段课程」进转型路线的阶段课程页看逐周安排与验收标准。</p></div><button class="btn ghost" type="button" data-goto="home" style="padding:7px 14px;font-size:13.5px">去首页进度板 →</button></div>
+  <div id="pgStages"></div>
+  <div class="pg-weeks-note" id="pgWeeksNote"></div>
+  <div class="hp-weeks" id="pgWeeks" style="margin-top:10px"></div>
+
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-network"/></svg>技能覆盖</h3><p>上面是转型路线页的覆盖口径：约六成已有可迁移，缺口集中在三块；每块缺口的进度按对应 FDE 阶段的周完成度算。下面把技能图谱的 14 项能力逐项标出状态。</p></div><button class="btn ghost" type="button" data-goto="skills" style="padding:7px 14px;font-size:13.5px">看技能图谱 →</button></div>
+  <div class="cov">
+    <div class="cov-bar" role="img" aria-label="技能覆盖示意：约 60% 已有可迁移，约 40% 需要补，集中在生产级 LLM 部署、客户现场交付、评测驱动方法三块"><i class="cov-have">已有 · 可直接迁移　约 60%</i><i class="cov-gap">需要补　约 40%</i></div>
+  </div>
+  <div id="pgGaps" style="margin-top:18px"></div>
+  <div class="pg-skills">
+    <div><h4><svg class="ic" aria-hidden="true"><use href="#i-code"/></svg>技术能力 · 8 项</h4><ul class="pg-skill-list" id="pgTech"></ul></div>
+    <div><h4><svg class="ic" aria-hidden="true"><use href="#i-users"/></svg>客户现场能力 · 6 项</h4><ul class="pg-skill-list" id="pgField"></ul></div>
+  </div>
+  <p class="src" style="margin-top:12px">状态口径：「已有」取自「转型路线」页的已有对照表（生产级 Java / 全栈、API 与数据库、系统设计、带团队拆需求等）；「在学 / 已补」按对应 FDE 阶段的周完成度推导——阶段有一周完成或正处在当前阶段就算在学，五阶段的周全部完成算已补。出差是岗位条件而非技能，单独标出。招聘原文的逐项要求在「技能图谱」页。</p>
+
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-trophy"/></svg>成就</h3><p>成就由同一批记录点亮：读完、打卡、完成周与阶段、出关、收藏、给工作台存版本——达成哪条亮哪条，未达成的会写清还差多少。</p></div><span class="hp-cycle" id="pgAchLine"></span></div>
+  <div class="pg-ach-grid" id="pgAch"></div>
+
+  <div class="hp-sec-head"><div><h3><svg class="ic" aria-hidden="true"><use href="#i-target"/></svg>下一步</h3><p>按你现在的记录算出来的最值得先做的两三件事，做完回到这一页，数字会跟着变。</p></div></div>
+  <div id="pgNext"></div>
+
 </div></section>
 
 <header class="hero wizard-page" id="overview" data-step-title="开始 · 总览" data-step-short="总览"><div class="wrap">
@@ -1087,7 +1193,7 @@ body.in-detail .bottom-tabs{display:none}
   <p class="src" style="margin-top:14px">你的技术底子（生产级 Java / 全栈、API 与数据库、带团队拆需求）已经够了——多家转型指南的共识是，软件工程师转 FDE 时约 60% 的技能已有，缺的主要就是上面三块。对照表与五阶段补法在第 4 步「转型路线」里逐条展开。</p>
   <div class="start-cta">
     <button class="btn" id="startBtn" type="button" style="padding:13px 22px;font-size:15px">从 FDE 技能图谱开始 →</button>
-    <span class="hint">共 20 页（含首页），分 3 个大类：FDE 转型 / PDE 手艺基础 / 实战与作品集 · 从左侧「学习路径」打开全部内容索引直达任意一页 · 每周一 / 三 / 五早上更新案例与学习方案（见「每周更新」页）</span>
+    <span class="hint">共 21 页（含首页），分 3 个大类：FDE 转型 / PDE 手艺基础 / 实战与作品集 · 从左侧「学习路径」打开全部内容索引直达任意一页 · 每周一 / 三 / 五早上更新案例与学习方案（见「每周更新」页）</span>
   </div>
 </div></header>
 
@@ -3852,6 +3958,7 @@ confidence=low 的条目默认不回写，只进内部日志供调优。</pre>
     if(id==='home') return 'home';
     if(id==='path') return 'path';
     if(id==='fdecases'||id==='realcases') return 'fdecases';
+    if(id==='progress') return 'progress';
     if(id==='lab') return 'lab';
     return 'path'; /* every other content page belongs to 学习路径 */
   }
@@ -3867,7 +3974,7 @@ confidence=low 的条目默认不回写，只进内部日志供调优。</pre>
     }, 120);
   };
   // page id -> broad category (top menu has only these 3 groups)
-  var CAT_OF = { home:'fde', path:'path', overview:'fde', skills:'fde', transition:'fde', work:'fde', fdecases:'fde', interview:'fde', starter:'pde', what:'pde', day:'pde', roadmap:'pde', cases:'pde', realcases:'pde', pitfalls:'pde', lab:'practice', resources:'practice', portfolio:'practice', updates:'practice', open:'practice', sources:'practice' };
+  var CAT_OF = { home:'fde', path:'path', overview:'fde', skills:'fde', transition:'fde', work:'fde', fdecases:'fde', interview:'fde', starter:'pde', what:'pde', day:'pde', roadmap:'pde', cases:'pde', realcases:'pde', pitfalls:'pde', lab:'practice', progress:'practice', resources:'practice', portfolio:'practice', updates:'practice', open:'practice', sources:'practice' };
   function pageId(pg){ return pg.id || 'top'; }
   function indexFromHash(){
     var h=(location.hash||'').replace('#','');
@@ -5560,6 +5667,213 @@ confidence=low 的条目默认不回写，只进内部日志供调优。</pre>
   renderFavs();
   syncReadUI();
   checkRead();
+})();
+</script>
+<script>
+/* ============================================================
+   独立进度页 · 学习数据看板 / 成就 / 技能覆盖
+   只读站内已有记录并现场计算，不写任何新状态：
+   fde-home-weeks-v1（20 周勾选，与首页进度板同一份）、
+   fde-progress-v1（已读 / 打卡 / 上次位置）、fde-favorites-v1（收藏）、
+   pde-prompt-workbench-v1（工作台版本快照）、.stage-check（PDE 出关，
+   本次浏览内）。页面被打开时与记录变化时重算。
+   ============================================================ */
+(function(){
+  'use strict';
+  var root=document.getElementById('progress'); if(!root) return;
+  function load(key, def){ try{ var r=window.localStorage.getItem(key); return r?JSON.parse(r):def; }catch(e){ return def; } }
+  function esc(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+  function pad(n){ return (n<10?'0':'')+n; }
+  function dayStr(d){ return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate()); }
+  function pct(a,b){ return b? Math.round(a/b*100):0; }
+
+  var WEEK_NAMES=['精读 3 个案例做对比表','FDE 定位一页纸 + 模拟访谈','RAG 切片基线冻结','上下文工程对照实验','结构化输出与工具调用','成本与延迟账本','Eval 设计：两个切片各 4 个指标','把两个切片各扩到 24-case','搭 eval harness','verifier + judge + stop hook','给 judge 建 eval + 接 CI 门','集成设计与治理层一页纸','RAG 切片服务化（Spring Boot API）','可观测性与回滚演练','安全与合规威胁清单演练','部署复盘与成本复核','模拟客户发现与 scope doc','一周试点交付','采用、培训与交接','复盘与作品集打包'];
+  var STAGE_OF_WEEK=[0,0,1,1,1,1,2,2,2,2,2,3,3,3,3,3,4,4,4,4];
+  var STAGES=[
+    {name:'Stage 0 · FDE 视角', weeks:'第 1–2 周', total:2, d:'交付物 D0：定位一页纸 + 3 案对比表'},
+    {name:'Stage 1 · LLM 工程', weeks:'第 3–6 周', total:4, d:'交付物 D1：基线报告 + 成本账本'},
+    {name:'Stage 2 · Agent 与 Evals', weeks:'第 7–11 周', total:5, d:'交付物 D2：24-case 集 + harness + 回归报告'},
+    {name:'Stage 3 · 企业集成与部署', weeks:'第 12–16 周', total:5, d:'交付物 D3：可部署服务 + 治理页 + 上线清单'},
+    {name:'Stage 4 · 现场客户交付', weeks:'第 17–20 周', total:4, d:'交付物 D4：模拟交付包 + 汇报'}
+  ];
+  var TECH=[
+    {n:'写生产级代码', d:'Python 为主，另加 TypeScript / JavaScript；你已有生产级 Java / 全栈经验', st:'have'},
+    {n:'生产级 LLM 经验', d:'高级 Prompt 工程、智能体开发、评测框架、大规模部署（Anthropic 招聘原文四项）', st:1},
+    {n:'关系型数据库', d:'Postgres / MySQL 等；你已有 API 与数据库设计经验', st:'have'},
+    {n:'系统集成', d:'文档管理、知识库、工单系统、身份认证 / SSO', st:3},
+    {n:'平台与工具', d:'Foundry / AIP / Gotham、Kubernetes、Python、Java、Bash、Linux', st:3},
+    {n:'数据工程', d:'数据管道、转换、本体（ontology）对齐、数据建模', st:3},
+    {n:'安全与合规', d:'权限、审计、访问控制；随 Stage 3 的威胁清单演练补齐', st:3},
+    {n:'部署运维', d:'CI/CD、监控、可部署性优化、生产系统维护', st:3}
+  ];
+  var FIELD=[
+    {n:'发现与界定', d:'把模糊业务问题拆成可交付、可度量的项目；练习 A 从 Stage 0 就开始练', st:0},
+    {n:'与客户各层级沟通', d:'从一线工程师到高管都要能直接对话', st:4},
+    {n:'培训与推动落地', d:'演示、培训、收集反馈，推动用户改变工作方式', st:4},
+    {n:'在模糊与压力下判断', d:'简化复杂问题、在压力下快速做出正确决策', st:4},
+    {n:'把一线经验带回产品', d:'将现场经验分享回业务与产品团队', st:4},
+    {n:'出差 25%–50%', d:'OpenAI 最高 50%，Anthropic、Palantir 约 25%——是岗位条件，不是能学出来的技能', st:'cond'}
+  ];
+  var GAPS=[
+    {n:'缺口一 · 生产级 LLM 经验', stage:1, d:'靠 Stage 1 补：把 RAG 切片做到可复现、可度量、可回滚，产出 D1 基线报告与成本账本。'},
+    {n:'缺口二 · 面向客户的评测体系', stage:2, d:'靠 Stage 2 补：按客户真实案例建评测集，把分数变成上线门槛，产出 D2。'},
+    {n:'缺口三 · 客户现场交付', stage:4, d:'靠 Stage 4 补：独立跑一次发现 → scope → 试点 → 复盘 → 交接，产出 D4 交付包；发现练习从 Stage 0 起就在练。'}
+  ];
+
+  function gather(){
+    var weeksArr=load('fde-home-weeks-v1',[]);
+    var done={}; if(Array.isArray(weeksArr)) weeksArr.forEach(function(n){ if(n>=1&&n<=20) done[n]=true; });
+    var weeksDone=Object.keys(done).length;
+    var stageDone=STAGES.map(function(s,si){
+      var c=0; WEEK_NAMES.forEach(function(t,i){ if(STAGE_OF_WEEK[i]===si&&done[i+1]) c++; }); return c;
+    });
+    var curWeek=0; for(var w=1;w<=20;w++){ if(!done[w]){ curWeek=w; break; } }
+    var prog=load('fde-progress-v1',{read:{},visits:{},last:null});
+    if(!prog.read) prog.read={}; if(!prog.visits) prog.visits={};
+    var readCount=Object.keys(prog.read).length;
+    var streak=0, d=new Date();
+    while(prog.visits[dayStr(d)]){ streak++; d.setDate(d.getDate()-1); if(streak>366) break; }
+    var fav=load('fde-favorites-v1',{pages:[],cases:[]});
+    var favPages=Array.isArray(fav.pages)?fav.pages.length:0;
+    var favCases=Array.isArray(fav.cases)?fav.cases.length:0;
+    var pde=0, pdeTotal=0;
+    document.querySelectorAll('.stage-check').forEach(function(c){ pdeTotal++; if(c.checked) pde++; });
+    var wb=load('pde-prompt-workbench-v1',null), wbSnaps=0, wbTpls=0;
+    if(wb&&wb.templates){ Object.keys(wb.templates).forEach(function(k){ var t=wb.templates[k]; wbTpls++; if(t&&Array.isArray(t.snapshots)) wbSnaps+=t.snapshots.length; }); }
+    var pagesTotal=document.querySelectorAll('.wizard-page').length;
+    return {done:done, weeksDone:weeksDone, stageDone:stageDone, curWeek:curWeek,
+      prog:prog, readCount:readCount, streak:streak, visitDays:Object.keys(prog.visits).length,
+      favPages:favPages, favCases:favCases, favTotal:favPages+favCases,
+      pde:pde, pdeTotal:pdeTotal, wbSnaps:wbSnaps, wbTpls:wbTpls, pagesTotal:pagesTotal};
+  }
+  function stageStatus(g, si){
+    var doneN=g.stageDone[si], total=STAGES[si].total;
+    if(doneN>=total) return {cls:'have', label:'已补'};
+    var curStage=g.curWeek? STAGE_OF_WEEK[g.curWeek-1] : -1;
+    if(doneN>0||si===curStage) return {cls:'learn', label:'在学'};
+    return {cls:'todo', label:'待补'};
+  }
+  function ringSVG(si){
+    return '<div class="hp-ring sm" role="img" aria-label="'+esc(STAGES[si].name)+' 进度环"><svg width="44" height="44" viewBox="0 0 44 44" aria-hidden="true"><circle class="hp-ring-bg" cx="22" cy="22" r="18" stroke-width="5"/><circle class="hp-ring-fg" data-pg-ring="'+si+'" cx="22" cy="22" r="18" stroke-width="5" style="stroke-dasharray:113.1;stroke-dashoffset:113.1"/></svg><span class="hp-ring-num" data-pg-ring-num="'+si+'">0%</span></div>';
+  }
+  function setRing(si, frac){
+    var c=root.querySelector('[data-pg-ring="'+si+'"]'); if(!c) return;
+    var cc=2*Math.PI*18; if(frac<0)frac=0; if(frac>1)frac=1;
+    c.style.strokeDasharray=cc.toFixed(1); c.style.strokeDashoffset=(cc*(1-frac)).toFixed(1);
+    var n=root.querySelector('[data-pg-ring-num="'+si+'"]'); if(n) n.textContent=Math.round(frac*100)+'%';
+  }
+
+  function render(){
+    var g=gather();
+    /* KPI tiles */
+    var kpis=[
+      {k:'20 周进度', icon:'i-route', big:g.weeksDone+' / 20 周', sub:'总进度 '+pct(g.weeksDone,20)+'%'+(g.weeksDone?(' · 已投入约 '+(g.weeksDone*10)+'–'+(g.weeksDone*12)+' 小时（每周约 10–12 小时口径）'):' · 从第 1 周开始')},
+      {k:'已读页面', icon:'i-book-open', big:g.readCount+' / '+g.pagesTotal+' 页', sub:'读到一页 80% 处自动标记已读'},
+      {k:'连续学习', icon:'i-flame', big:g.streak+' 天', sub:'累计打卡 '+g.visitDays+' 天 · 每天打开自动记一次'},
+      {k:'PDE 出关', icon:'i-flag', big:g.pde+' / '+g.pdeTotal+' 阶段', sub:'学习路线页的出关自查 · 只在本次浏览内有效'},
+      {k:'我的收藏', icon:'i-star', big:g.favTotal+' 条', sub:'页面 '+g.favPages+' 条 · 案例 '+g.favCases+' 条 · 稍后读清单'},
+      {k:'工作台版本', icon:'i-flask', big:g.wbSnaps+' 个快照', sub:g.wbTpls?('Prompt 工作台 '+g.wbTpls+' 个模板的本地保存'): '还没在 Prompt 工作台保存过版本'}
+    ];
+    document.getElementById('pgKpis').innerHTML=kpis.map(function(k){
+      return '<div class="pg-kpi"><span class="pg-k"><svg class="ic" aria-hidden="true"><use href="#'+k.icon+'"/></svg>'+esc(k.k)+'</span><b>'+esc(k.big)+'</b><span>'+esc(k.sub)+'</span></div>';
+    }).join('');
+    /* last 14 days */
+    var line=document.getElementById('pgStreakLine');
+    if(line) line.textContent='连续 '+g.streak+' 天 · 累计 '+g.visitDays+' 天';
+    var wd=['日','一','二','三','四','五','六'], daysHtml='';
+    for(var i=13;i>=0;i--){
+      var dd=new Date(); dd.setDate(dd.getDate()-i);
+      var on=!!g.prog.visits[dayStr(dd)];
+      daysHtml+='<div class="pg-day'+(on?' on':'')+(i===0?' today':'')+'"><b>'+(dd.getMonth()+1)+'/'+dd.getDate()+'</b><span>周'+wd[dd.getDay()]+(i===0?' · 今天':'')+'</span></div>';
+    }
+    document.getElementById('pgDays').innerHTML=daysHtml;
+    /* stages */
+    document.getElementById('pgStages').innerHTML=STAGES.map(function(s,si){
+      var dn=g.stageDone[si];
+      return '<div class="pg-stage-row">'+ringSVG(si)+'<div class="pg-stage-main"><b>'+esc(s.name)+' <span style="font-family:\'JetBrains Mono\',monospace;font-size:11.5px;color:var(--ink2);font-weight:600">'+esc(s.weeks)+'</span></b><span>'+esc(s.d)+' · 已完成 '+dn+' / '+s.total+' 周</span><div class="pg-bar" aria-hidden="true"><i style="width:'+pct(dn,s.total)+'%"></i></div></div><button class="btn ghost" type="button" data-pg-stage="'+si+'" style="padding:7px 14px;font-size:13.5px">打开阶段课程 →</button></div>';
+    }).join('');
+    STAGES.forEach(function(s,si){ setRing(si, g.stageDone[si]/s.total); });
+    root.querySelectorAll('[data-pg-stage]').forEach(function(b){
+      b.addEventListener('click',function(){ if(window.fdeOpenDetail) window.fdeOpenDetail('transition', parseInt(b.getAttribute('data-pg-stage'),10)); });
+    });
+    /* 20-week strip (display only; toggling stays on the home board) */
+    document.getElementById('pgWeeks').innerHTML=WEEK_NAMES.map(function(t,i){
+      var w=i+1;
+      return '<div class="hp-week'+(g.done[w]?' done':'')+(w===g.curWeek?' current':'')+'"><b>第 '+w+' 周'+(g.done[w]?' · 已完成':'')+'</b>'+esc(t)+'</div>';
+    }).join('');
+    var note=document.getElementById('pgWeeksNote');
+    if(note) note.textContent=g.curWeek?('当前周：第 '+g.curWeek+' 周 · '+WEEK_NAMES[g.curWeek-1]+'（'+STAGES[STAGE_OF_WEEK[g.curWeek-1]].name+'）。这一板只展示，点卡片切换完成状态在首页「我的进度 · 20 周」进度板上。'):'20 周已全部完成。这一板只展示，切换完成状态在首页进度板上。';
+    /* gaps */
+    document.getElementById('pgGaps').innerHTML=GAPS.map(function(gp){
+      var dn=g.stageDone[gp.stage], total=STAGES[gp.stage].total, st=stageStatus(g, gp.stage);
+      return '<div class="pg-gap"><div class="pg-gap-head"><b>'+esc(gp.n)+'</b><span>'+esc(STAGES[gp.stage].name)+' · 已完成 '+dn+' / '+total+' 周 · '+pct(dn,total)+'% · '+st.label+'</span></div><div class="pg-bar" style="max-width:none" aria-hidden="true"><i style="width:'+pct(dn,total)+'%"></i></div><p>'+esc(gp.d)+'</p></div>';
+    }).join('');
+    /* skills */
+    function skillRow(sk){
+      var chip;
+      if(sk.st==='have') chip='<span class="pg-chip have">已有</span>';
+      else if(sk.st==='cond') chip='<span class="pg-chip cond">条件项</span>';
+      else { var s2=stageStatus(g, sk.st); chip='<span class="pg-chip '+s2.cls+'">'+s2.label+'</span>'; }
+      return '<li class="pg-skill"><div class="pg-skill-main"><b>'+esc(sk.n)+'</b><span>'+esc(sk.d)+'</span></div>'+chip+'</li>';
+    }
+    document.getElementById('pgTech').innerHTML=TECH.map(skillRow).join('');
+    document.getElementById('pgField').innerHTML=FIELD.map(skillRow).join('');
+    /* achievements */
+    var ach=[
+      {icon:'i-book-open', n:'初读达成', d:'读完站内任意一页（读到 80% 自动标记）', cur:g.readCount, tgt:1},
+      {icon:'i-book-open', n:'通读过半', d:'已读页面过半', cur:g.readCount, tgt:Math.ceil(g.pagesTotal/2)},
+      {icon:'i-award', n:'全站通读', d:'全部页面都读完', cur:g.readCount, tgt:g.pagesTotal},
+      {icon:'i-flame', n:'连续 3 天', d:'连续打卡 3 天', cur:g.streak, tgt:3},
+      {icon:'i-flame', n:'连续 7 天', d:'连续打卡一整周', cur:g.streak, tgt:7},
+      {icon:'i-calendar', n:'累计 14 天', d:'累计打卡 14 天（不要求连续）', cur:g.visitDays, tgt:14},
+      {icon:'i-check', n:'第一周完成', d:'在首页进度板点下第 1 周完成', cur:g.weeksDone, tgt:1},
+      {icon:'i-flag', n:'Stage 0 结业', d:'FDE 视角阶段 2 周全部完成（D0）', cur:g.stageDone[0], tgt:STAGES[0].total},
+      {icon:'i-route', n:'半程 10 周', d:'20 周完成一半', cur:g.weeksDone, tgt:10},
+      {icon:'i-trophy', n:'20 周全完成', d:'五阶段 20 周全部完成（D0–D4）', cur:g.weeksDone, tgt:20},
+      {icon:'i-flag', n:'PDE 首关', d:'PDE 学习路线勾下第一个出关（本次浏览内）', cur:g.pde, tgt:1},
+      {icon:'i-trophy', n:'PDE 九关全出', d:'PDE 9 个阶段全部达到出关标准（本次浏览内）', cur:g.pde, tgt:g.pdeTotal},
+      {icon:'i-star', n:'收藏 5 条', d:'页面与案例收藏合计 5 条', cur:g.favTotal, tgt:5},
+      {icon:'i-layers', n:'两类案例都读过', d:'FDE 真实案例与 PDE 真实案例两页都读完', cur:(g.prog.read['fdecases']?1:0)+(g.prog.read['realcases']?1:0), tgt:2},
+      {icon:'i-flask', n:'工作台留下版本', d:'Prompt 工作台的本地保存里已有版本快照', cur:g.wbSnaps, tgt:1}
+    ];
+    var lit=0;
+    document.getElementById('pgAch').innerHTML=ach.map(function(a){
+      var on=a.cur>=a.tgt; if(on) lit++;
+      var shown=Math.min(a.cur,a.tgt);
+      return '<div class="pg-ach'+(on?' on':'')+'"><svg class="ic" aria-hidden="true"><use href="#'+a.icon+'"/></svg><b>'+esc(a.n)+'</b><p>'+esc(a.d)+'</p><span class="pg-ach-state">'+(on?'已达成':('还差 '+(a.tgt-shown)+' · 现在 '+shown+' / '+a.tgt))+'</span></div>';
+    }).join('');
+    var al=document.getElementById('pgAchLine'); if(al) al.textContent='已点亮 '+lit+' / '+ach.length;
+    /* next steps */
+    var steps=[];
+    if(g.curWeek){
+      var si2=STAGE_OF_WEEK[g.curWeek-1];
+      steps.push({t:'推进第 '+g.curWeek+' 周 · '+WEEK_NAMES[g.curWeek-1], s:STAGES[si2].name+' · 交付物与验收标准在阶段课程页里', btn:'打开阶段课程 →', stage:si2});
+    } else {
+      steps.push({t:'20 周已全部完成：去作品集打包 D0–D4', s:'把五阶段交付物整理成最终作品集，或回看案例库换个案例复盘', btn:'去作品集 →', go:'portfolio'});
+    }
+    var order=['overview','skills','transition','work','fdecases','interview','starter','what','day','roadmap','cases','realcases','pitfalls','lab','resources','portfolio','updates','open','sources'];
+    var titles={}; document.querySelectorAll('.wizard-page').forEach(function(p){ titles[p.id]=p.getAttribute('data-step-title')||p.id; });
+    for(var oi=0;oi<order.length;oi++){ if(!g.prog.read[order[oi]]){ steps.push({t:'读完《'+(titles[order[oi]]||order[oi])+'》', s:'还没标记已读的页面，按学习路径顺序排在最前的一页', btn:'去读这一页 →', go:order[oi]}); break; } }
+    if(g.pde===0) steps.push({t:'去 PDE 学习路线勾下第一个出关', s:'9 个阶段的出关自查在各自的课程页里，勾选只在本次浏览内有效', btn:'去学习路线 →', go:'roadmap'});
+    if(g.favTotal===0) steps.push({t:'收藏一篇想回头看的案例', s:'案例详情页和每页上方都有收藏入口，收藏后会进侧栏与首页的稍后读', btn:'去案例库 →', go:'fdecases'});
+    document.getElementById('pgNext').innerHTML=steps.slice(0,3).map(function(s){
+      return '<div class="pg-next-row"><div class="pg-next-main"><b>'+esc(s.t)+'</b><span>'+esc(s.s)+'</span></div>'+(s.stage!=null?('<button class="btn ghost" type="button" data-pg-nstage="'+s.stage+'" style="padding:7px 14px;font-size:13.5px">'+esc(s.btn)+'</button>'):('<button class="btn ghost" type="button" data-pg-ngo="'+esc(s.go)+'" style="padding:7px 14px;font-size:13.5px">'+esc(s.btn)+'</button>'))+'</div>';
+    }).join('');
+    root.querySelectorAll('[data-pg-nstage]').forEach(function(b){ b.addEventListener('click',function(){ if(window.fdeOpenDetail) window.fdeOpenDetail('transition', parseInt(b.getAttribute('data-pg-nstage'),10)); }); });
+    root.querySelectorAll('[data-pg-ngo]').forEach(function(b){ b.addEventListener('click',function(){ if(window.fdeGoToPage) window.fdeGoToPage(b.getAttribute('data-pg-ngo')); }); });
+  }
+  render();
+  /* re-render whenever the page is opened or the underlying records change
+     (week toggles happen on home; stage checks inside course pages) */
+  var sig='';
+  function sigOf(){ var g=gather(); return [g.weeksDone,g.readCount,g.streak,g.visitDays,g.favTotal,g.pde,g.wbSnaps].join('|'); }
+  window.setInterval(function(){
+    if(!root.classList.contains('active')) return;
+    var s=sigOf(); if(s!==sig){ sig=s; render(); }
+  },900);
+  document.addEventListener('change',function(e){
+    if(e.target&&e.target.classList&&e.target.classList.contains('stage-check')){ sig=''; if(root.classList.contains('active')) render(); }
+  });
 })();
 </script>
 </body>
