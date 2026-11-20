@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+<title>FDE 转型站 · 更新</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/</link>
+<atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
+<description>从全栈开发到前沿部署工程师：每周一案例拆解、周三方法与工具、周五招聘与面试，更新逐条记入日志。</description>
+<language>zh-CN</language>
+<lastBuildDate>Fri, 20 Nov 2026 09:09:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-20 · 每周更新（周五轮）：① 「FDE 真实案例」一步新增 8 个案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-20-991</guid>
+<pubDate>Fri, 20 Nov 2026 09:09:00 +0800</pubDate>
+<description>每周更新（周五轮）：① 「FDE 真实案例」一步新增 8 个案例——Revolut（Codex 使编码时间减少 30–60%、FinCrime 智能体承接交易筛查）、Sumitomo Life（ChatGPT Enterprise 每周使用率超 80%、员工自报时间节省估算 ROI 总体 203%）、Singapore Airlines（客服机器人 Kris 满意度提升 2 倍、内部平台 Jarvis 月活超 60% 员工）、Cogent（智能体从调查到验证修复全程自主、TRACE 与人工审批关卡）、Cyera（17 天完成全公司推广、周活 88%）、Rakuten（新功能上市时间 24 个工作日 → 5 天）、Stripe（Claude Code 零配置部署至 1,370 名工程师）、Salesforce（33 个 API 端点迁移 13 天完成、有效产出 +151%，出自 Anthropic S-1 文件所载案例、经两家梳理交叉核对），前七个为厂商官方案例 [官]、Salesforce 为 [转]，全部数字均为厂商 / 客户自述、未经独立审计。② Holiday Extras 卡片追加 2026-11-16 跟进故事「dots」[官]（个人 AI 助手 dots 拉取 BigQuery 数据做上线后报告、通勤语音对话准备会议、3D 角色动画从数日缩至约 10 分钟，均为客户自述）。③ 行业动向新增 2 条 [转]：Palantir 2026 年第三季度美国商业收入 9.84 亿美元（同比 +148%）首次超过美国政府收入 9.53 亿美元；Anthropic 总裁 Daniela Amodei 2026-11-19 称超过一半的财富 500 强在使用 Claude（Anthropic 自述）。④ 「招聘与面试」一步新增 2026-11-17 招聘快照 [转]（FreshTalent 实读 22 家公司招聘板共 406 个在招 FDE 岗位，FDE Times 与 MarsLab 两套计数交叉核对并注明口径不同不可混比；Palantir 伦敦应届生 FDSE 岗 2026-11-19 确认仍在招、Glassdoor 面试信号无新变化）。⑤ 首页及全站案例计数 39 → 47（FDE 案例卡片 32 → 40 张，新案例同步进入每日轮换池与案例库）</description>
+</item>
+<item>
+<title>2026-11-19 · 站点改版（非检索轮）：移动端与细节打磨</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-19-328</guid>
+<pubDate>Thu, 19 Nov 2026 16:11:00 +0800</pubDate>
+<description>站点改版（非检索轮）：移动端与细节打磨——① 手机体验：顶栏在窄屏保持单行（目录按钮只留图标），不再换行撑高固定顶栏；主要按钮、筛选、标签、日历格与列表行补到 44px 点按高度；表单字号在手机上提到 16px，iOS 聚焦时不再自动放大；提示条上移避开底部导航；表格与代码块在小屏收紧字号与内距。② 深色与护眼主题：浏览器顶栏颜色（theme-color）随三套主题同步切换，滚动条颜色跟主题变量走，切换主题时已加载的评论框同步换成对应的明暗主题。③ 加载速度：三套网络字体改为预加载后切换，首屏先用系统字体出字、不再等字体下载；五个定时轮询在页面切到后台时暂停；分享卡图改为低优先级异步解码；评论脚本域名提前做 DNS 预解析。其余页面内容与顺序未改动</description>
+</item>
+<item>
+<title>2026-11-19 · 站点改版（非检索轮）：发现与订阅</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-19-330</guid>
+<pubDate>Thu, 19 Nov 2026 09:09:00 +0800</pubDate>
+<description>站点改版（非检索轮）：发现与订阅——① SEO：全站补页面描述、规范链接、robots 与结构化数据（WebSite），每一页各有独立标题与描述，站内切换页面时分享信息随当前页更新；② RSS：订阅源由本日志现场生成，栏目页可打开订阅源或下载 feed.xml，页脚也挂了订阅入口；③ 分享卡：新增 1200×630 分享卡图与 Open Graph / Twitter Card 标签，发任意一页到微信、飞书、X 等平台都带当前页的标题、摘要与卡图；④ 邮件周报：栏目页新增「发现与订阅」区，把最近 7 天的日志条目打包成周报预览，可复制全文、下载 HTML 邮件或唤起邮件客户端发送（静态站不收集邮箱，发送在读者自己的邮箱里完成）。其余页面内容与顺序未改动</description>
+</item>
+<item>
+<title>2026-11-19 · 站点改版（非检索轮）：内容栏目化</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-19-402</guid>
+<pubDate>Thu, 19 Nov 2026 09:09:00 +0800</pubDate>
+<description>站点改版（非检索轮）：内容栏目化——新增「栏目」页（全站第 22 页）：① 全站页面归入三个栏目（案例拆解 · 周一 / 方法与工具 · 周三 / 招聘与面试 · 周五）与常设档案，栏目节奏与每周三次的检索轮次对齐；② 39 个案例按厂商与来源编成 5 个系列（OpenAI FDE 现场 / Anthropic 官方案例 / Palantir / 其他厂商与核查 / PDE 企业案例），转型路线与 PDE 学习路线另列为两个课程系列；③ 全部案例按厂商、行业与场景打标签，栏目页可按标签筛案例；④ 案例详情页新增栏目 / 系列 / 标签信息行与「相关推荐」（同系列优先、同行业其次，另附同栏目页面）；⑤ 新增更新日历：2026 年 11–12 月月历上标出已记入日志的更新日、周一 / 三 / 五固定更新日与后续预告，点日期看当天日志摘要。其余 21 页内容与顺序未改动，全站计数 21 → 22 页</description>
+</item>
+<item>
+<title>2026-11-18 · 每周更新（周三轮）：① 「FDE 真实案例」一步新增 7 个官方案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-18-786</guid>
+<pubDate>Wed, 18 Nov 2026 09:09:00 +0800</pubDate>
+<description>每周更新（周三轮）：① 「FDE 真实案例」一步新增 7 个官方案例——Amplitude（主动式产品智能体 Wave，产品改进约 1 个月 → 1–2 天）、Shield（GPT-6 Astra 计算机操作智能体进驻无 API 老旧门户）、Gondola（业务团队用 Codex 做可用第一版）、CodeRabbit（6 个月出货量约 20 倍）、Mercado Libre（Claude Code 在 23,000 名开发者规模落地）、PayPal（Claude Enterprise 覆盖 12,000 多名员工）、AIG（Claude 重做商业承保，数字截至 2026-03-31），全部为厂商官方案例 [官]，数字均为厂商 / 客户自述、未经独立审计。② Holiday Extras 卡片升级为 [官]：替换原 [转] 内容与链接，改为官方原文数字（Codex 2 周完成主 App 全面重建、转化率 +32.5%、错误率 19% → 9%、重建后首月每周发布）。③ 行业动向新增 1 条 [官]：OpenAI 医疗计算机操作智能体上线（2026-11-16，CVS Health 生产使用、Cigna 不到 8 周部署、325 项 EHR 任务医生评测 99% 临床安全为 OpenAI 自有评测）。④ 「招聘与面试」一步新增 2026-11-13/15 招聘快照 [转]（systemdesign.academy / aiengineerinsights / dev.to 三套口径并列、Levels.fyi 中位总薪酬约 22.5 万美元、Palantir 伦敦应届岗仍在招、Glassdoor 面试信号无新变化），注明不同口径不可直接混比。⑤ 首页及全站案例计数 32 → 39（FDE 案例卡片 25 → 32 张，新案例同步进入每日轮换池与案例库）</description>
+</item>
+<item>
+<title>2026-11-16 · 每周更新（周一轮）：① 「FDE 真实案例」一步新增 Anthropic 官方案例 Travelers（…</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-16-642</guid>
+<pubDate>Mon, 16 Nov 2026 09:09:00 +0800</pubDate>
+<description>每周更新（周一轮）：① 「FDE 真实案例」一步新增 Anthropic 官方案例 Travelers（保险）：Claude 推广到近 25,000 名员工（2026 年 1 月先覆盖近 10,000 名工程师、数据科学家、分析师与产品负责人），代码合并时间缩短 50%，Claude Code 贯穿软件开发生命周期——数字均为 Anthropic 官方案例页自述、未经独立审计，50% 的测量周期与比较基线未公开，案例页未标注发布日期（本站按 2026-11-14 行业媒体报道时间收录）。② 行业动向新增 2 条：OpenAI × 马自达 / Chip Ganassi Racing（FDE 团队用气流与结构模拟探索新车设计、3D 扫描转 CAD 与 2D 图纸，效果数字未公开）[官]；Anthropic 自托管 Claude Managed Agents 私有测试版（整套智能体服务可跑在客户自有云 / 本地，无公开价格与全面上线日期）[官]。③ 「招聘与面试」一步新增 2026-11-11 招聘快照 [转]：招聘板直接计数 OpenAI 39 / Palantir 73 / Anthropic 8 / Databricks 95，Levels.fyi 美国 FDE 中位总薪酬约 22.5 万美元，FDE Dispatch 快照 704 个在招岗位 / 114 家雇主；三套口径不同，不可直接对比涨跌。④ 首页案例计数 31 → 32（新案例同步进入每日轮换池与案例库）</description>
+</item>
+<item>
+<title>2026-11-13 · 每周更新（周五轮）：① 「FDE 真实案例」一步在 Jamf、Pictet 之后新增 4 个案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-13-751</guid>
+<pubDate>Fri, 13 Nov 2026 09:09:00 +0800</pubDate>
+<description>每周更新（周五轮）：① 「FDE 真实案例」一步在 Jamf、Pictet 之后新增 4 个案例——Zendesk（自定义智能体搭建器，5 人团队 4 个月做到 early access [官]）、Holiday Extras（Codex 两周重建主旅行 App [转]）、Heimstaden（无编程背景分析师用 Codex 做全组合环境风险评估 [转]）、Cult.fit（OpenAI 官方案例页版，与既有转述版并列存照 [官]），数字均为厂商 / 客户自述、未经独立审计。② 行业动向新增 5 条：AWS 10 亿美元 FDE 投入经 About Amazon 官方发布核实（2026-06-30），从「没能核实」清单移出，并补 45 天冲刺制 [转]；微软 Frontier Company（25 亿美元、6,000 人）同列；另有 OpenAI Deployment Company 招聘进展、澳洲高校 ChatGPT Edu、ChatGPT Enterprise 上架 AWS Marketplace。③ 「招聘与面试」一步新增 2026-11-08/10 快照（dev.to ATS 口径 OpenAI 34 / Palantir 70、Hiring Tempo 761 个在招、Palantir 伦敦应届通道与 Glassdoor 面试新信号）。④ 「转型路线」一步新增 FDE-Gym 交付能力基准（arXiv:2610.22350，95 个任务、最好成绩 0.56 分）。⑤ 「没能核实」清单新增 2 条：Gartner 70% / FDE 约 2,000 人说法（仅一篇 Medium）、Indeed 经 Business Insider 的 5,330 个招聘数字（单链转述）</description>
+</item>
+<item>
+<title>2026-11-12 · 站点改版（非检索轮）：首页强化为仪表盘</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-12-167</guid>
+<pubDate>Thu, 12 Nov 2026 09:09:00 +0800</pubDate>
+<description>站点改版（非检索轮）：首页强化为仪表盘——新增「今日任务清单」（今日一案 + 今日一练 + 当前周推进 + 最新上线四项，勾选按天存这台浏览器、次日自动换新）、20 周总进度环与五阶段进度环（与 20 周进度板共用同一份完成记录）、「最新上线」改为更新时间线（含下一次更新预告与历次更新入口）；其余 19 步内容、顺序与工作台均未改动</description>
+</item>
+<item>
+<title>2026-11-11 · 站点改版（非检索轮）：新增「首页 · 今日学习」一步（总步数 19 → 20），本站更像一个学习平台</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-11-160</guid>
+<pubDate>Wed, 11 Nov 2026 09:09:00 +0800</pubDate>
+<description>站点改版（非检索轮）：新增「首页 · 今日学习」一步（总步数 19 → 20），本站更像一个学习平台——首页含今日一案 + 今日一练（按日期从站内已有 27 个案例与 18 个练习中轮换，不做新检索）、最新上线、五阶段学习路径卡、20 周进度记录（存这台浏览器）与可搜索的案例库；原有 19 步内容、顺序与工作台均未改动</description>
+</item>
+<item>
+<title>2026-11-11 · 每周更新（周三轮）：① 「FDE 真实案例」一步新增两个 Anthropic 官方案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-11-544</guid>
+<pubDate>Wed, 11 Nov 2026 09:09:00 +0800</pubDate>
+<description>每周更新（周三轮）：① 「FDE 真实案例」一步新增两个 Anthropic 官方案例——Jamf（8 周 89% 活跃使用率、285 个用例与「One Framework, Three Roads」三路治理框架）与 Pictet（瑞士私人银行，合规差距分析两周→数小时、数据驻留欧盟 / 瑞士 + 专用 API 网关），数字均为厂商 / 客户自述、未经独立审计。② 「转型路线」一步新增官方学习路径 Claude Frontier Academy（1 亿美元投入、FDE Residency 4 天集训 + 12 周驻场、提名制无公开报名），并给出把其结构抄进 20 周自学计划的用法。③ 「招聘与面试」一步新增 2026-11-06 招聘市场快照（OpenAI 32 / Palantir 44 / Anthropic 8 个 FDE 在招岗位）与 2026 年面试题型变化（技术轮转向智能体形态，「工具—权限—人工审批—兜底—评测」五件套）。④ 「FDE 真实案例」一步的行业动向补两条：Anthropic 合资服务公司定名 Ode with Anthropic（约 100 名工程师起步）、Cognizant 2026-11-10 宣布 25,000+ 人 Claude 服务团队</description>
+</item>
+<item>
+<title>2026-11-11 · 本轮深化（案例 + 学习方案）：① 5 个原标「实施过程未公开」的案例按一手来源补厚</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-11-560</guid>
+<pubDate>Wed, 11 Nov 2026 09:09:00 +0800</pubDate>
+<description>本轮深化（案例 + 学习方案）：① 5 个原标「实施过程未公开」的案例按一手来源补厚——Spotify 改写为 Honk 全过程（官方系列四篇 + 2026-06 总结帖，含 verifier / judge / 三大失败模式与自认的 eval 缺口）、NovoScribe 补 11 人团队与 RAG 架构并并列呈现与 MongoDB 的口径冲突、Money Forward 补 MEPAR 推广全过程、Skywise 以 Palantir 2020 供应商文档纠正旧数字（A350 交付加速 33%、分阶段用户数）、TITAN / Maven 拆成两个项目并按分级标注合同数字；过程仍未公开的在卡内明说。② 新增 2026 年 10 月以来案例：Legora、Itaú、Cult.fit、Palantir 主权 AI 一批客户、DXC OASIS（备选）与 Harvey 三个律所线索。③ BP「钻井规划 90%」核实为真（bp 2025 Q2 业绩演示文稿），口径收窄至阿塞拜疆井规划，从「没能核实」移出并立专卡。④ 「转型路线」一步的五阶段展开为 20 周周计划：逐周任务、约小时数、交付物 D0–D4 与验收标准、练习 A–F 与带分级的资源链接。未能核实的集中记入案例步页末与「开放问题」一步，未编造任何数字</description>
+</item>
+<item>
+<title>2026-11-11 · 「FDE 真实案例」一步补实施过程说明：11 个案例从结果表改为可展开卡片，逐个按公开来源还原实施过程（…</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-11-139</guid>
+<pubDate>Wed, 11 Nov 2026 09:09:00 +0800</pubDate>
+<description>「FDE 真实案例」一步补实施过程说明：11 个案例从结果表改为可展开卡片，逐个按公开来源还原实施过程（半导体两阶段与底座重构、电信评测 60% 的处理、NHS 先试点再签约的分批推广与摩擦、Cox 先立规矩再推工具的推广顺序等）；来源没披露过程的案例明确标注「未公开」，不补写</description>
+</item>
+<item>
+<title>2026-11-10 · 首批 FDE 内容上线，本站整体改为 FDE 转型站：新增「技能图谱、转型路线、工作内容、FDE 真实案…</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-10-92</guid>
+<pubDate>Tue, 10 Nov 2026 09:09:00 +0800</pubDate>
+<description>首批 FDE 内容上线，本站整体改为 FDE 转型站：新增「技能图谱、转型路线、工作内容、FDE 真实案例、招聘与面试」五步；原 PDE 全部内容收进「PDE 手艺基础」一章；新增本页</description>
+</item>
+</channel>
+</rss>
