@@ -6,7 +6,14 @@
 <atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <description>从全栈开发到前沿部署工程师：每周一案例拆解、周三方法与工具、周五招聘与面试，更新逐条记入日志。</description>
 <language>zh-CN</language>
-<lastBuildDate>Fri, 20 Nov 2026 09:09:00 +0800</lastBuildDate>
+<lastBuildDate>Sun, 22 Nov 2026 09:09:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-22 · 每日更新：① 「FDE 真实案例」一步新增 4 个官方案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-22-517</guid>
+<pubDate>Sun, 22 Nov 2026 09:09:00 +0800</pubDate>
+<description>每日更新（首次每天更新）：① 「FDE 真实案例」一步新增 4 个官方案例——Hebbia（GPT-6 Astra 做投行并购尽调，引用准确率领先 13.6 个百分点）、Advantage Solutions（财务预测验证工作流从每周期约 10 小时压缩到 30 分钟以内，70,000+ 工时为预计值）、Bristol Myers Squibb（真实世界证据问题回答时间从约 2 个月缩短到约 5 分钟）、Kuken Industries（找一张备件图纸从近 1 小时缩短到平均 4.5 分钟，90% 工时减少为预计值），全部为厂商官方案例 [官]，数字均为厂商 / 客户自述、未经独立审计。② 今日头条换成 Hebbia。③ 今日快讯新增 3 行 [转]：Top FDE Jobs 2026-11-19 招聘快照（1,208 个在招岗位、461 家公司，中位薪酬约 $200K，另一统计口径、不可与招聘板实读数混比）、Glassdoor 面试信号无新变化、No Priors 2026-11-19 McGrew 谈 FDE 产品方法。④ 首页及全站案例计数 47 → 51</description>
+</item>
 <item>
 <title>2026-11-20 · 每周更新（周五轮）：① 「FDE 真实案例」一步新增 8 个案例</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
