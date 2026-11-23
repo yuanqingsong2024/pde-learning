@@ -4,9 +4,16 @@
 <title>FDE 转型站 · 更新</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/</link>
 <atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
-<description>从全栈开发到前沿部署工程师：每周一案例拆解、周三方法与工具、周五招聘与面试，更新逐条记入日志。</description>
+<description>从全栈开发到前沿部署工程师：每天更新（约 09:09），案例拆解、方法与工具、招聘与面试，更新逐条记入日志。</description>
 <language>zh-CN</language>
-<lastBuildDate>Mon, 23 Nov 2026 09:09:00 +0800</lastBuildDate>
+<lastBuildDate>Mon, 23 Nov 2026 14:13:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-23 · 站点改版（非检索轮）：新增「推荐书单与资源」页</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-23-714</guid>
+<pubDate>Mon, 23 Nov 2026 14:13:00 +0800</pubDate>
+<description>站点改版（非检索轮）：新增「推荐书单与资源」页（全站第 23 页，归入「实战与作品集」组与「方法与工具」栏目）——① 免费全文与开放文档 6 条：范冰《前线部署工程师（FDE）指南》（作者授权免费公开、非商业分享注明出处，只放 GitHub 原仓库、授权在线阅读与官网链接，并转述其附录 A 交付指标体系要点：TTV、PoC 转化率、NRR、定制递减率）、《FDE 蓝皮书》PDF、《FDE 白皮书》V2.7、求智启新白皮书 PDF、Fieldwork《The FDE Handbook》（英文免费）、真实智元 12 周课纲；② 商业出版 2 本只引用目录与框架：邴越《FDE 前线部署工程师》（清华大学出版社 2026-11，定价 119 元，12 章目录引用并逐章标注可借鉴处）、O'Reilly《The Forward Deployed Engineer》抢先版（另附 10 小时视频课）；③ 每条都写清一句话内容、目录 / 看点、许可状态与站内对应页，未见明确转载许可的一律只放链接、不搬文件，商业书正文不收录；④ 入口同步：学习路径索引、首页常用入口、「学习资料」页互链、栏目归属、逐页描述与全局搜索自动纳入，全站计数 22 → 23 页</description>
+</item>
 <item>
 <title>2026-11-23 · 每日更新：① 今日快讯新增 2026-11-22 招聘快照</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
