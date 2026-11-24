@@ -6,7 +6,14 @@
 <atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <description>从全栈开发到前沿部署工程师：每天更新（约 09:09），案例拆解、方法与工具、招聘与面试，更新逐条记入日志。</description>
 <language>zh-CN</language>
-<lastBuildDate>Mon, 23 Nov 2026 14:13:00 +0800</lastBuildDate>
+<lastBuildDate>Tue, 24 Nov 2026 09:09:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-24 · 每日更新：① 「FDE 真实案例」一步新增 1 个官方案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-24-802</guid>
+<pubDate>Tue, 24 Nov 2026 09:09:00 +0800</pubDate>
+<description>每日更新：① 「FDE 真实案例」一步新增 1 个官方案例——Richpanel（电商 AI 客服：用「Boss AI」为每个客户搭建客服智能体所需的工具与流程；搭建侧用 GPT-6 Astra 与 GPT-6.1 Sol，前线客服智能体用 GPT-6 Luna；承诺 30 天内实现 50% 客服自动化、否则退款，过去六个月约 300 次部署均兑现该承诺；称 AI 客户满意度超过人类客服，但未给出具体数值），全部数字均为 OpenAI / Richpanel 自述、未经独立审计。② 今日头条换为 Richpanel（2026-11-23 最新 OpenAI 客户故事）。③ 今日快讯新增 2026-11-24 招聘快照小节 [转]：open-fde.ai 1,704 个在招岗位 / 558 家公司（较 11 月 22 日的 1,722 / 562 略降；分公司 Databricks 115、Palantir 92、Wonderful 58、OpenAI 44；Wonderful 2026-11-23 新发 FDE 岗）；Top FDE Jobs 1,219 / 473（较 11 月 19 日微增）；Glassdoor 面试信号无新变化。④ 首页及全站案例计数 51 → 52</description>
+</item>
 <item>
 <title>2026-11-23 · 站点改版（非检索轮）：新增「推荐书单与资源」页</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
