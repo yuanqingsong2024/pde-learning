@@ -6,7 +6,14 @@
 <atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <description>从全栈开发到前沿部署工程师：每天更新（约 09:09），案例拆解、方法与工具、招聘与面试，更新逐条记入日志。</description>
 <language>zh-CN</language>
-<lastBuildDate>Tue, 24 Nov 2026 09:09:00 +0800</lastBuildDate>
+<lastBuildDate>Wed, 25 Nov 2026 09:09:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-25 · 每日更新：① 「FDE 真实案例」一步新增 3 个官方案例</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-25-460</guid>
+<pubDate>Wed, 25 Nov 2026 09:09:00 +0800</pubDate>
+<description>每日更新：① 「FDE 真实案例」一步新增 3 个官方案例——Carvana（Anthropic 官方案例，补录：生产告警进 Slack 后 Claude Tag 自动调查根因、定位负责团队、输出根因分析，工程师可在同一线程让它开 PR；替代了自研的两代 Slack 机器人；零售科学频道告警量下降 56%，批发平台团队拿到答案的速度提升 65%）、iFood（OpenAI 客户故事，2026-11-24：巴西外卖平台自建 Remote Agents Platform，把编码智能体做成内部 API，覆盖 15,000+ 代码仓库；已完成 25,000+ 任务、消耗 270 亿+ tokens、平均每次运行 US$0.04）、Clay（OpenAI 客户故事，2026-11-24：销售智能平台把获客工作流带进 Codex 与 ChatGPT 插件；效果数字未公开），全部数字均为厂商 / 客户自述、未经独立审计。② 今日头条换为 iFood（2026-11-24 最新 OpenAI 客户故事）。③ 今日快讯新增 2026-11-25 招聘快照小节 [转]：open-fde.ai 1,697 个在招岗位 / 555 家公司（快照仍为 11 月 24 日）；Top FDE Jobs（topfdejobs.com）实时 1,211 / 472，本周新增 48；Glassdoor 面试信号无新变化。④ 首页及全站案例计数 52 → 55</description>
+</item>
 <item>
 <title>2026-11-24 · 每日更新：① 「FDE 真实案例」一步新增 1 个官方案例</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
