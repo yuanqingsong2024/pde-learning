@@ -6,7 +6,14 @@
 <atom:link href="https://yuanqingsong2024.github.io/pde-learning/assets/feed.xml" rel="self" type="application/rss+xml"/>
 <description>从全栈开发到前沿部署工程师：每天更新（约 09:09），案例拆解、方法与工具、招聘与面试，更新逐条记入日志。</description>
 <language>zh-CN</language>
-<lastBuildDate>Fri, 27 Nov 2026 09:09:00 +0800</lastBuildDate>
+<lastBuildDate>Sat, 28 Nov 2026 09:09:00 +0800</lastBuildDate>
+<item>
+<title>2026-11-28 · 每日更新：今日无新案例，仅刷新招聘快照</title>
+<link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
+<guid isPermaLink="false">fde-2026-11-28-204</guid>
+<pubDate>Sat, 28 Nov 2026 09:09:00 +0800</pubDate>
+<description>每日更新：今日无新案例（OpenAI 客户故事列表、Anthropic 客户列表、OpenAI 博客、Palantir 博客均无 11 月 27 日后新内容），仅刷新招聘快照——首页「今日快讯」新增 2026-11-27/28 招聘快照小节 [转]：open-fde.ai 快照更新于 2026-11-27，1,703 个在招岗位 / 549 家公司（前一日 1,707 / 551）；Top FDE Jobs 截至 2026-11-28 为 1,238 个在招岗位 / 484 家公司（前一日 1,226 / 476），近 7 天新增 63 个；Kernavique 11 月市场报告更新至 2026-11-27 读数：299 个美国岗位 / 65 家雇主（前一日 297），技能词 Python 205、AI 智能体 170、评测 134 居前，本月新出现 16 个岗位；Glassdoor Palantir FDE 面试信号无新变化。今日头条仍为 iFood，案例总数仍 55</description>
+</item>
 <item>
 <title>2026-11-27 · 每日更新：今日无新案例，新增招聘快照与 Kernavique 市场报告</title>
 <link>https://yuanqingsong2024.github.io/pde-learning/#updates</link>
